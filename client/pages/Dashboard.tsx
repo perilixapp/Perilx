@@ -591,9 +591,11 @@ Include:
             <div className="flex justify-center gap-4 mt-8">
               <Button className="btn-accent">
                 <Zap className="w-4 h-4 mr-2" />
-                Get Detailed Rejection Analysis
+                {analysisResult.companyName
+                  ? "Get Detailed Rejection Analysis"
+                  : "Upgrade for Full Report"}
               </Button>
-              <Button className="btn-secondary">📊 Download Report</Button>
+              <Button className="btn-secondary">Download Report</Button>
             </div>
           </div>
         )}
