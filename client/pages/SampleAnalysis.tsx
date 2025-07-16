@@ -16,6 +16,8 @@ import {
   Target,
   Users,
   Award,
+  Sparkles,
+  Zap,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -88,25 +90,24 @@ Responsibilities:
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 gradient-bg" />
+
       {/* Navigation */}
-      <nav className="border-b border-gray-800 bg-black sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="relative z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl sticky top-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Search className="w-5 h-5 text-black" />
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                <Search className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-xl text-white">
                 Why Was I Rejected?
               </span>
             </Link>
             <Link to="/">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-gray-600 text-white hover:bg-white hover:text-black"
-              >
+              <Button className="btn-secondary">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home
               </Button>
@@ -115,109 +116,109 @@ Responsibilities:
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="relative z-40 max-w-6xl mx-auto px-6 lg:px-8 py-12">
         {/* Header */}
-        <div className="text-center mb-8">
-          <Badge className="mb-6 px-4 py-2 text-sm bg-gray-800 text-white border-gray-700">
-            <span className="mr-2">🎯</span>
+        <div className="text-center mb-16 animate-fade-in">
+          <Badge className="mb-8 px-4 py-2 text-sm bg-gray-900/50 text-gray-300 border border-gray-800/50 backdrop-blur-sm">
+            <Sparkles className="w-4 h-4 mr-2 text-purple-400" />
             AI-Powered Analysis Demo
           </Badge>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl lg:text-5xl font-black text-white mb-6">
             Resume Analysis Demo
           </h1>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium">
             Experience how our AI analyzes your resume against job requirements
             to identify improvement opportunities
           </p>
         </div>
 
         {/* Progress Steps */}
-        <div className="mb-8">
-          <div className="flex items-center justify-center space-x-8 mb-6">
+        <div className="mb-16">
+          <div className="flex items-center justify-center space-x-8 mb-8">
             <div className="flex items-center">
               <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 font-bold ${
                   currentStep >= 1
-                    ? "bg-white text-black"
+                    ? "bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-lg"
                     : "bg-gray-800 border border-gray-700 text-gray-400"
                 }`}
               >
                 {resumeUploaded ? (
                   <CheckCircle className="w-6 h-6" />
                 ) : (
-                  <span className="font-semibold">1</span>
+                  <span>1</span>
                 )}
               </div>
-              <span className="ml-2 text-sm font-medium text-gray-300">
+              <span className="ml-3 text-sm font-medium text-gray-300">
                 Upload Resume
               </span>
             </div>
             <div className="w-16 h-0.5 bg-gray-800 relative overflow-hidden">
               <div
-                className={`h-full bg-white transition-all duration-500 ${
+                className={`h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-500 ${
                   currentStep >= 2 ? "w-full" : "w-0"
                 }`}
               />
             </div>
             <div className="flex items-center">
               <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 font-bold ${
                   currentStep >= 2
-                    ? "bg-white text-black"
+                    ? "bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-lg"
                     : "bg-gray-800 border border-gray-700 text-gray-400"
                 }`}
               >
                 {currentStep > 2 ? (
                   <CheckCircle className="w-6 h-6" />
                 ) : (
-                  <span className="font-semibold">2</span>
+                  <span>2</span>
                 )}
               </div>
-              <span className="ml-2 text-sm font-medium text-gray-300">
+              <span className="ml-3 text-sm font-medium text-gray-300">
                 Job Description
               </span>
             </div>
             <div className="w-16 h-0.5 bg-gray-800 relative overflow-hidden">
               <div
-                className={`h-full bg-white transition-all duration-500 ${
+                className={`h-full bg-gradient-to-r from-purple-500 to-purple-600 transition-all duration-500 ${
                   currentStep >= 3 ? "w-full" : "w-0"
                 }`}
               />
             </div>
             <div className="flex items-center">
               <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 font-bold ${
                   currentStep >= 3
-                    ? "bg-white text-black"
+                    ? "bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-lg"
                     : "bg-gray-800 border border-gray-700 text-gray-400"
                 }`}
               >
                 {showResults ? (
                   <CheckCircle className="w-6 h-6" />
                 ) : (
-                  <span className="font-semibold">3</span>
+                  <span>3</span>
                 )}
               </div>
-              <span className="ml-2 text-sm font-medium text-gray-300">
+              <span className="ml-3 text-sm font-medium text-gray-300">
                 Get Analysis
               </span>
             </div>
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Input Section */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Step 1: Upload Resume */}
-            <Card
-              className={`bg-gray-900 border-gray-800 transition-all duration-500 ${
-                currentStep >= 1 ? "ring-2 ring-white" : ""
+            <div
+              className={`card-premium transition-all duration-500 ${
+                currentStep >= 1 ? "ring-2 ring-purple-500/50" : ""
               }`}
             >
               <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
-                    <Upload className="w-4 h-4 text-black" />
+                <CardTitle className="flex items-center text-white text-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                    <Upload className="w-5 h-5 text-white" />
                   </div>
                   Step 1: Upload Your Resume
                 </CardTitle>
@@ -226,9 +227,9 @@ Responsibilities:
                 {!resumeUploaded ? (
                   <div
                     onClick={handleFileUpload}
-                    className="border-2 border-dashed border-gray-700 hover:border-white rounded-xl p-8 text-center cursor-pointer transition-all duration-300 bg-gray-800/30 hover:bg-gray-800 group"
+                    className="border-2 border-dashed border-gray-700 hover:border-purple-500 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 bg-gray-850/30 hover:bg-gray-850/50 group"
                   >
-                    <Upload className="w-12 h-12 text-gray-500 group-hover:text-white mx-auto mb-4 transition-all duration-300" />
+                    <Upload className="w-12 h-12 text-gray-500 group-hover:text-purple-400 mx-auto mb-4 transition-all duration-300 group-hover:scale-110" />
                     <p className="text-gray-300 mb-2 font-medium">
                       Click to upload your resume
                     </p>
@@ -237,31 +238,31 @@ Responsibilities:
                     </p>
                   </div>
                 ) : (
-                  <div className="flex items-center p-4 bg-gray-800 rounded-xl border border-gray-700">
-                    <CheckCircle className="w-8 h-8 text-white mr-3" />
+                  <div className="flex items-center p-4 bg-gradient-to-r from-purple-500/10 to-purple-600/10 rounded-xl border border-purple-500/30 animate-slide-up">
+                    <CheckCircle className="w-8 h-8 text-purple-400 mr-3" />
                     <div>
                       <p className="font-medium text-white">
                         sample_resume.pdf
                       </p>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-purple-300">
                         Successfully uploaded
                       </p>
                     </div>
                   </div>
                 )}
               </CardContent>
-            </Card>
+            </div>
 
             {/* Step 2: Job Description */}
-            <Card
-              className={`bg-gray-900 border-gray-800 transition-all duration-500 ${
-                currentStep >= 2 ? "ring-2 ring-white" : "opacity-50"
+            <div
+              className={`card-premium transition-all duration-500 ${
+                currentStep >= 2 ? "ring-2 ring-purple-500/50" : "opacity-50"
               }`}
             >
               <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
-                    <FileText className="w-4 h-4 text-black" />
+                <CardTitle className="flex items-center text-white text-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                    <FileText className="w-5 h-5 text-white" />
                   </div>
                   Step 2: Paste Job Description
                 </CardTitle>
@@ -271,32 +272,28 @@ Responsibilities:
                   placeholder="Paste the job description here..."
                   value={jobDescription}
                   onChange={(e) => handleJobDescriptionChange(e.target.value)}
-                  className="min-h-[200px] mb-4 bg-gray-800 border-gray-700 text-white placeholder:text-gray-500 focus:border-white resize-none"
+                  className="min-h-[200px] mb-4 bg-gray-850/50 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/20 resize-none rounded-xl"
                   disabled={currentStep < 2}
                 />
                 {currentStep >= 2 && !jobDescription && (
-                  <Button
-                    onClick={fillSampleJob}
-                    variant="outline"
-                    size="sm"
-                    className="border-gray-600 text-white hover:bg-white hover:text-black"
-                  >
+                  <Button onClick={fillSampleJob} className="btn-secondary">
+                    <Zap className="w-4 h-4 mr-2" />
                     Use Sample Job Description
                   </Button>
                 )}
               </CardContent>
-            </Card>
+            </div>
 
             {/* Step 3: Analyze */}
-            <Card
-              className={`bg-gray-900 border-gray-800 transition-all duration-500 ${
-                currentStep >= 3 ? "ring-2 ring-white" : "opacity-50"
+            <div
+              className={`card-premium transition-all duration-500 ${
+                currentStep >= 3 ? "ring-2 ring-purple-500/50" : "opacity-50"
               }`}
             >
               <CardHeader>
-                <CardTitle className="flex items-center text-white">
-                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
-                    <Brain className="w-4 h-4 text-black" />
+                <CardTitle className="flex items-center text-white text-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                    <Brain className="w-5 h-5 text-white" />
                   </div>
                   Step 3: Get AI Analysis
                 </CardTitle>
@@ -306,202 +303,192 @@ Responsibilities:
                   <Button
                     onClick={handleAnalyze}
                     disabled={currentStep < 3}
-                    size="lg"
-                    className="w-full bg-white text-black hover:bg-gray-200 font-semibold py-4 px-8 rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-accent w-full text-lg py-4 h-auto font-semibold"
                   >
                     <Brain className="w-5 h-5 mr-2" />
                     Analyze My Resume
+                    <Sparkles className="w-5 h-5 ml-2" />
                   </Button>
                 )}
                 {isAnalyzing && (
-                  <div className="text-center py-8">
-                    <Brain className="w-16 h-16 text-white mx-auto mb-6 animate-pulse" />
-                    <p className="font-medium text-white mb-2">
+                  <div className="text-center py-8 animate-fade-in">
+                    <div className="relative mx-auto mb-6 w-16 h-16">
+                      <Brain className="w-16 h-16 text-purple-400 mx-auto animate-pulse" />
+                      <div className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl animate-ping"></div>
+                    </div>
+                    <p className="font-bold text-white mb-4 text-xl">
                       AI Analysis in Progress...
                     </p>
                     <div className="max-w-sm mx-auto mb-4">
                       <Progress
                         value={analysisProgress}
-                        className="h-2 bg-gray-800 [&>div]:bg-white"
+                        className="h-3 bg-gray-800 [&>div]:bg-gradient-to-r [&>div]:from-purple-500 [&>div]:to-purple-600"
                       />
                     </div>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-gray-400 font-medium">
                       Comparing resume against job requirements
                     </p>
                   </div>
                 )}
               </CardContent>
-            </Card>
+            </div>
           </div>
 
           {/* Results Section */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {showResults && (
-              <>
+              <div className="animate-slide-up space-y-8">
                 {/* Overall Score */}
-                <Card className="bg-gray-900 border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="flex items-center justify-between text-white">
+                <div className="card-premium p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-white">
                       Resume Match Score
-                      <Badge className="text-lg px-4 py-2 bg-white text-black">
-                        72%
-                      </Badge>
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <Progress
-                      value={72}
-                      className="mb-4 h-3 bg-gray-800 [&>div]:bg-white"
-                    />
-                    <p className="text-sm text-gray-400">
-                      Your resume matches 72% of the job requirements. Here's
-                      how to improve:
-                    </p>
-                  </CardContent>
-                </Card>
+                    </h3>
+                    <Badge className="text-xl px-4 py-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold">
+                      72%
+                    </Badge>
+                  </div>
+                  <Progress
+                    value={72}
+                    className="mb-4 h-4 bg-gray-800 [&>div]:bg-gradient-to-r [&>div]:from-purple-500 [&>div]:to-purple-600"
+                  />
+                  <p className="text-gray-400 font-medium">
+                    Your resume matches 72% of the job requirements. Here's how
+                    to improve:
+                  </p>
+                </div>
 
                 {/* Rejection Reasons */}
-                <Card className="bg-gray-900 border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-white">
-                      <AlertTriangle className="w-5 h-5 mr-2" />3 Likely
-                      Rejection Reasons
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
-                      <h4 className="font-semibold text-white mb-2">
+                <div className="card-premium p-6">
+                  <h3 className="flex items-center text-white text-xl font-bold mb-6">
+                    <AlertTriangle className="w-6 h-6 mr-3 text-red-400" />3
+                    Likely Rejection Reasons
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
+                      <h4 className="font-bold text-white mb-2">
                         1. Missing Required Experience
                       </h4>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-gray-400">
                         The job requires 5+ years of React experience, but your
                         resume only clearly shows 3 years.
                       </p>
                     </div>
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
-                      <h4 className="font-semibold text-white mb-2">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
+                      <h4 className="font-bold text-white mb-2">
                         2. Key Technology Gaps
                       </h4>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-gray-400">
                         Missing TypeScript, GraphQL, and AWS experience which
                         are specifically mentioned in requirements.
                       </p>
                     </div>
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
-                      <h4 className="font-semibold text-white mb-2">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
+                      <h4 className="font-bold text-white mb-2">
                         3. Lack of Leadership Examples
                       </h4>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-gray-400">
                         No clear examples of mentoring or leading team projects
                         for this senior-level position.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
 
                 {/* Improvement Suggestions */}
-                <Card className="bg-gray-900 border-gray-800">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-white">
-                      <TrendingUp className="w-5 h-5 mr-2" />3 Key Improvements
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
+                <div className="card-premium p-6">
+                  <h3 className="flex items-center text-white text-xl font-bold mb-6">
+                    <TrendingUp className="w-6 h-6 mr-3 text-green-400" />3 Key
+                    Improvements
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
                       <div className="flex items-start">
-                        <Target className="w-5 h-5 text-white mr-3 mt-0.5" />
+                        <Target className="w-6 h-6 text-green-400 mr-3 mt-0.5" />
                         <div>
-                          <h4 className="font-semibold text-white mb-2">
+                          <h4 className="font-bold text-white mb-2">
                             Highlight All React Experience
                           </h4>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-gray-400">
                             Include freelance and side projects to show your
                             full 5+ years of React experience more clearly.
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
                       <div className="flex items-start">
-                        <Award className="w-5 h-5 text-white mr-3 mt-0.5" />
+                        <Award className="w-6 h-6 text-green-400 mr-3 mt-0.5" />
                         <div>
-                          <h4 className="font-semibold text-white mb-2">
+                          <h4 className="font-bold text-white mb-2">
                             Add Missing Technologies
                           </h4>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-gray-400">
                             List TypeScript, GraphQL, and any cloud experience.
                             Consider taking AWS certifications if lacking.
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="p-4 bg-gray-800 rounded-xl border border-gray-700">
+                    <div className="p-4 bg-gray-850/50 rounded-xl border border-gray-700/50">
                       <div className="flex items-start">
-                        <Users className="w-5 h-5 text-white mr-3 mt-0.5" />
+                        <Users className="w-6 h-6 text-green-400 mr-3 mt-0.5" />
                         <div>
-                          <h4 className="font-semibold text-white mb-2">
+                          <h4 className="font-bold text-white mb-2">
                             Showcase Leadership Skills
                           </h4>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-gray-400">
                             Add specific examples of mentoring junior developers
                             or leading technical initiatives.
                           </p>
                         </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
 
                 {/* CTA */}
-                <Card className="bg-gray-800 border-gray-700">
-                  <CardContent className="p-6 text-center">
-                    <h3 className="font-bold text-xl text-white mb-2">
-                      Ready to Improve Your Resume?
-                    </h3>
-                    <p className="text-gray-400 mb-6">
-                      Get unlimited analyses with detailed feedback for all your
-                      job applications.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <Link to="/auth">
-                        <Button
-                          size="lg"
-                          className="bg-white text-black hover:bg-gray-200 font-semibold px-8 py-3 rounded-xl"
-                        >
-                          Start Free Trial
-                        </Button>
-                      </Link>
-                      <Link to="/">
-                        <Button
-                          variant="outline"
-                          size="lg"
-                          className="border-gray-600 text-white hover:bg-white hover:text-black px-8 py-3 rounded-xl"
-                        >
-                          View Pricing
-                        </Button>
-                      </Link>
-                    </div>
-                  </CardContent>
-                </Card>
-              </>
+                <div className="card-premium p-8 text-center">
+                  <div className="relative mb-6">
+                    <Sparkles className="w-12 h-12 text-purple-400 mx-auto" />
+                    <div className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl animate-pulse"></div>
+                  </div>
+                  <h3 className="font-black text-2xl text-white mb-4">
+                    Ready to Improve Your Resume?
+                  </h3>
+                  <p className="text-gray-400 mb-8 text-lg">
+                    Get unlimited analyses with detailed feedback for all your
+                    job applications.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link to="/auth">
+                      <Button className="btn-accent text-lg px-8 py-4 h-auto font-semibold">
+                        <Zap className="w-5 h-5 mr-2" />
+                        Start Free Trial
+                      </Button>
+                    </Link>
+                    <Link to="/">
+                      <Button className="btn-secondary text-lg px-8 py-4 h-auto">
+                        View Pricing
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             )}
 
             {!showResults && (
-              <Card className="bg-gray-900/50 border-gray-800/50 opacity-60">
-                <CardHeader>
-                  <CardTitle className="text-gray-500">
-                    Analysis Results
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center py-12">
-                    <Brain className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                    <p className="text-gray-500">
-                      Complete all steps above to see your personalized analysis
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="card-premium p-8 opacity-50">
+                <h3 className="text-xl font-bold text-gray-500 mb-6">
+                  Analysis Results
+                </h3>
+                <div className="text-center py-16">
+                  <Brain className="w-16 h-16 text-gray-600 mx-auto mb-6" />
+                  <p className="text-gray-500 text-lg">
+                    Complete all steps above to see your personalized analysis
+                  </p>
+                </div>
+              </div>
             )}
           </div>
         </div>
