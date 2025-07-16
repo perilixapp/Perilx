@@ -16,6 +16,11 @@ import {
   Check,
   ArrowRight,
   MessageSquare,
+  Sparkles,
+  Zap,
+  Shield,
+  Clock,
+  BarChart3,
 } from "lucide-react";
 
 export default function Index() {
@@ -23,14 +28,21 @@ export default function Index() {
   const { user, signOut } = useAuth();
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 gradient-bg" />
+
+      {/* Floating orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+
       {/* Navigation */}
-      <nav className="border-b border-gray-800 bg-black sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="relative z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl sticky top-0">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Search className="w-5 h-5 text-black" />
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                <Search className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-xl text-white">
                 Why Was I Rejected?
@@ -39,52 +51,36 @@ export default function Index() {
             <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#features"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
               >
                 Features
               </a>
               <a
                 href="#pricing"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
               >
                 Pricing
               </a>
               <a
                 href="#testimonials"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
               >
                 Reviews
               </a>
               {user ? (
                 <div className="flex items-center space-x-4">
                   <span className="text-gray-300">Welcome, {user.name}!</span>
-                  <Button
-                    onClick={signOut}
-                    variant="outline"
-                    size="sm"
-                    className="border-gray-600 text-white hover:bg-white hover:text-black"
-                  >
+                  <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
                 </div>
               ) : (
                 <>
                   <Link to="/auth">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-gray-600 text-white hover:bg-white hover:text-black"
-                    >
-                      Sign In
-                    </Button>
+                    <Button className="btn-secondary">Sign In</Button>
                   </Link>
                   <Link to="/auth">
-                    <Button
-                      size="sm"
-                      className="bg-white text-black hover:bg-gray-200"
-                    >
-                      Get Started
-                    </Button>
+                    <Button className="btn-primary">Get Started</Button>
                   </Link>
                 </>
               )}
@@ -94,453 +90,503 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 pb-16 lg:pt-32 lg:pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Badge className="mb-6 px-4 py-2 text-sm bg-gray-800 text-white border-gray-700">
-              <span className="mr-2">🎯</span>
-              AI-Powered Rejection Analysis
+      <section className="relative z-40 pt-24 pb-20 lg:pt-32 lg:pb-28 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <Badge className="mb-8 px-4 py-2 text-sm bg-gray-900/50 text-gray-300 border border-gray-800/50 backdrop-blur-sm">
+              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+              AI-Powered Career Intelligence
             </Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tight">
               Understand Why You
-              <span className="text-gray-300 block">Didn't Get The Job</span>
+              <span className="block text-accent-gradient">
+                Didn't Get The Job
+              </span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+
+            <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
               Upload your resume and paste the job description. Get personalized
               AI feedback on why you might have been rejected and actionable
               tips to improve your chances.
             </p>
-            <div className="mt-10">
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
               <Link to="/sample-analysis">
-                <Button
-                  size="lg"
-                  className="px-8 py-3 text-lg bg-white text-black hover:bg-gray-200"
-                >
-                  Want to try it?
+                <Button className="btn-accent text-lg px-8 py-4 h-auto">
+                  Try AI Analysis
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
+              <div className="flex items-center text-gray-500 text-sm">
+                <Check className="w-4 h-4 mr-2 text-green-400" />
+                Free analysis • No signup required
+              </div>
             </div>
-            <p className="mt-4 text-sm text-gray-500">
-              Free analysis • No credit card required • Results in minutes
-            </p>
           </div>
         </div>
       </section>
 
-      {/* App Mockup Section */}
-      <section className="py-16 lg:py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Simple 3-Step Process
+      {/* Stats Section */}
+      <section className="relative z-40 py-20 animate-slide-up">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="text-4xl font-black text-white mb-2">98%</div>
+              <div className="text-gray-400 font-medium">Accuracy Rate</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-black text-white mb-2">10K+</div>
+              <div className="text-gray-400 font-medium">Resumes Analyzed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-black text-white mb-2">3x</div>
+              <div className="text-gray-400 font-medium">
+                Interview Rate Increase
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="relative z-40 py-24 bg-gradient-to-b from-transparent to-gray-900/20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+              How It Works
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Get personalized rejection feedback in minutes with our AI-powered
-              analysis
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
+              Get personalized feedback in minutes with our advanced AI analysis
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Upload className="w-6 h-6 text-black" />
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-10">
+              <div className="flex items-start space-x-4 group">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                  <Upload className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    1. Upload Your Resume
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Upload Your Resume
                   </h3>
-                  <p className="text-gray-400">
-                    Drop your resume file or paste the content directly into our
-                    secure platform.
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Securely upload your resume in any format. Our AI processes
+                    it instantly while keeping your data private.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                  <FileText className="w-6 h-6 text-black" />
+              <div className="flex items-start space-x-4 group">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                  <FileText className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    2. Add Job Description
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Add Job Description
                   </h3>
-                  <p className="text-gray-400">
-                    Paste the job posting you applied for so our AI can compare
-                    requirements.
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Paste the job posting you applied for. Our AI compares
+                    requirements with your background.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Brain className="w-6 h-6 text-black" />
+              <div className="flex items-start space-x-4 group">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                  <Brain className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    3. Get AI Analysis
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    Get AI Analysis
                   </h3>
-                  <p className="text-gray-400">
-                    Receive detailed feedback on gaps, misalignments, and
-                    improvement suggestions.
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Receive detailed insights on gaps, improvements, and
+                    optimization strategies within seconds.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="relative">
-              <Card className="shadow-2xl border-gray-700 bg-gray-800">
-                <CardHeader className="bg-gray-700 border-b border-gray-600">
-                  <CardTitle className="text-lg text-white">
-                    Resume Analysis Dashboard
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
-                      <span className="text-sm font-medium text-white">
-                        Resume Match Score
-                      </span>
-                      <Badge className="bg-gray-600 text-white">72%</Badge>
+              <div className="card-premium p-8 transform hover:scale-[1.02] transition-all duration-500">
+                <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-lg font-bold text-white">
+                      Analysis Results
+                    </h4>
+                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                      Complete
+                    </Badge>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-300">Match Score</span>
+                      <span className="text-2xl font-bold text-white">84%</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
-                      <span className="text-sm font-medium text-white">
-                        Missing Keywords
-                      </span>
-                      <Badge className="bg-gray-600 text-white">8 found</Badge>
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
-                      <span className="text-sm font-medium text-white">
-                        Experience Gap
-                      </span>
-                      <Badge className="bg-gray-600 text-white">2 years</Badge>
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
-                      <span className="text-sm font-medium text-white">
-                        Strengths
-                      </span>
-                      <Badge className="bg-gray-600 text-white">
-                        5 identified
-                      </Badge>
+                    <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[84%]"></div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
+                    <span className="text-gray-300 font-medium">
+                      Missing Skills
+                    </span>
+                    <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
+                      5 found
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
+                    <span className="text-gray-300 font-medium">Strengths</span>
+                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                      8 identified
+                    </Badge>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
+                    <span className="text-gray-300 font-medium">
+                      Improvements
+                    </span>
+                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                      12 suggested
+                    </Badge>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-16 lg:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Everything You Need to Land Your Next Job
+      <section id="features" className="relative z-40 py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+              Built for Modern Job Seekers
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Our AI analyzes every aspect of your application to give you
-              actionable insights
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
+              Advanced AI technology meets intuitive design to supercharge your
+              job search
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <Target className="w-8 h-8 text-black" />
-                </div>
-                <CardTitle className="text-xl text-white">
-                  Understand Rejection
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-400">
-                  Get clear insights into why your application might not have
-                  stood out to recruiters.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Precision Analysis
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                AI-powered insights that identify exactly why your application
+                might not stand out to recruiters.
+              </p>
+            </div>
 
-            <Card className="border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-8 h-8 text-black" />
-                </div>
-                <CardTitle className="text-xl text-white">
-                  Improve Resume
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-400">
-                  Receive specific recommendations to optimize your resume for
-                  similar positions.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Optimization Tips
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Specific, actionable recommendations to optimize your resume for
+                maximum impact.
+              </p>
+            </div>
 
-            <Card className="border-gray-700 bg-gray-900 hover:bg-gray-800 transition-colors">
-              <CardHeader className="text-center pb-4">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <MessageSquare className="w-8 h-8 text-black" />
-                </div>
-                <CardTitle className="text-xl text-white">
-                  Tailored Advice
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-400">
-                  Get personalized suggestions based on your industry, role, and
-                  experience level.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <MessageSquare className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Personalized Advice
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Tailored suggestions based on your industry, role, and
+                experience level.
+              </p>
+            </div>
+
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Shield className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Privacy First
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Your data is encrypted and secure. We never share your
+                information with third parties.
+              </p>
+            </div>
+
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Clock className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Instant Results
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Get comprehensive analysis and feedback in under 30 seconds.
+              </p>
+            </div>
+
+            <div className="card-premium p-8 text-center group">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <BarChart3 className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">
+                Track Progress
+              </h3>
+              <p className="text-gray-400 leading-relaxed">
+                Monitor your improvements over time with detailed analytics and
+                insights.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-16 lg:py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-              Loved by Job Seekers Everywhere
+      <section
+        id="testimonials"
+        className="relative z-40 py-24 bg-gradient-to-b from-gray-900/20 to-transparent"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+              Loved by Job Seekers
             </h2>
-            <p className="text-lg text-gray-400">
-              See how others have improved their job search success
+            <p className="text-xl text-gray-400 font-medium">
+              See how our AI analysis helped them land their dream jobs
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="border-gray-700 bg-gray-800">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-white fill-current" />
-                  ))}
+            <div className="card-premium p-8">
+              <div className="flex items-center mb-6">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-5 h-5 text-yellow-400 fill-current"
+                  />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                "The AI feedback was incredibly detailed. I finally understood
+                why I wasn't getting callbacks and landed my dream job within a
+                month!"
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">SJ</span>
                 </div>
-                <p className="text-gray-300 mb-4">
-                  "Finally understood why I wasn't getting callbacks. The AI
-                  feedback was spot-on and helped me land my dream job!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
-                    <span className="text-black font-semibold">SJ</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Sarah Johnson</p>
-                    <p className="text-sm text-gray-400">Software Engineer</p>
-                  </div>
+                <div>
+                  <p className="font-bold text-white">Sarah Johnson</p>
+                  <p className="text-gray-400">Senior Software Engineer</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="border-gray-700 bg-gray-800">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-white fill-current" />
-                  ))}
+            <div className="card-premium p-8">
+              <div className="flex items-center mb-6">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-5 h-5 text-yellow-400 fill-current"
+                  />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                "The keyword analysis was a game-changer. I was missing so many
+                important terms that ATS systems were filtering out."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">MC</span>
                 </div>
-                <p className="text-gray-300 mb-4">
-                  "The keyword analysis saved my career. I was missing so many
-                  important terms that employers were looking for."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
-                    <span className="text-black font-semibold">MC</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Mike Chen</p>
-                    <p className="text-sm text-gray-400">Marketing Manager</p>
-                  </div>
+                <div>
+                  <p className="font-bold text-white">Mike Chen</p>
+                  <p className="text-gray-400">Product Marketing Manager</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="border-gray-700 bg-gray-800">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-white fill-current" />
-                  ))}
+            <div className="card-premium p-8">
+              <div className="flex items-center mb-6">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-5 h-5 text-yellow-400 fill-current"
+                  />
+                ))}
+              </div>
+              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                "Went from 0 interviews to 5 in just three weeks. The
+                personalized advice was spot-on and actionable."
+              </p>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold">AR</span>
                 </div>
-                <p className="text-gray-300 mb-4">
-                  "Incredible insights! Went from 0 interviews to 5 in one month
-                  after implementing their suggestions."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
-                    <span className="text-black font-semibold">AR</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Alex Rodriguez</p>
-                    <p className="text-sm text-gray-400">Data Analyst</p>
-                  </div>
+                <div>
+                  <p className="font-bold text-white">Alex Rodriguez</p>
+                  <p className="text-gray-400">UX Designer</p>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-16 lg:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+      <section id="pricing" className="relative z-40 py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
               Simple, Transparent Pricing
             </h2>
-            <p className="text-lg text-gray-400 mb-8">
-              Choose the plan that works for your job search
+            <p className="text-xl text-gray-400 mb-8 font-medium">
+              Choose the plan that accelerates your job search
             </p>
 
             <div className="flex items-center justify-center space-x-4">
               <span
-                className={`text-sm ${!isYearly ? "text-white font-semibold" : "text-gray-400"}`}
+                className={`text-lg font-medium ${!isYearly ? "text-white" : "text-gray-400"}`}
               >
                 Monthly
               </span>
               <button
                 onClick={() => setIsYearly(!isYearly)}
-                className={`relative w-12 h-6 rounded-full transition-colors focus:outline-none ${isYearly ? "bg-white" : "bg-gray-600"}`}
+                className={`relative w-14 h-7 rounded-full transition-all duration-300 ${isYearly ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-gray-700"}`}
               >
                 <div
-                  className={`absolute top-0.5 left-0.5 w-5 h-5 bg-black rounded-full shadow transform transition-transform ${isYearly ? "translate-x-6" : ""}`}
+                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${isYearly ? "translate-x-7" : ""}`}
                 />
               </button>
               <span
-                className={`text-sm ${isYearly ? "text-white font-semibold" : "text-gray-400"}`}
+                className={`text-lg font-medium ${isYearly ? "text-white" : "text-gray-400"}`}
               >
-                Yearly{" "}
-                <Badge className="ml-1 bg-gray-700 text-white">Save 20%</Badge>
+                Yearly
+                <Badge className="ml-2 bg-green-500/20 text-green-400 border-green-500/30">
+                  Save 20%
+                </Badge>
               </span>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="border-2 border-gray-700 bg-gray-900">
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl font-bold text-white">
-                  Free Plan
-                </CardTitle>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold text-white">$0</span>
-                  <span className="text-gray-400">/month</span>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="card-premium p-8 relative">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-white mb-4">Starter</h3>
+                <div className="mb-4">
+                  <span className="text-5xl font-black text-white">$0</span>
+                  <span className="text-gray-400 text-lg">/month</span>
                 </div>
-                <p className="text-gray-400 mt-2">
-                  Perfect for trying out our service
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    1 resume analysis per month
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Basic keyword matching</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    General improvement tips
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Email support</span>
-                </div>
-                <Link to="/auth">
-                  <Button className="w-full mt-6 bg-white text-black hover:bg-gray-200">
-                    Get Started Free
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-white bg-gray-900 relative">
-              <div className="absolute top-0 right-0 bg-white text-black px-3 py-1 text-sm font-semibold">
-                Most Popular
+                <p className="text-gray-400">Perfect for getting started</p>
               </div>
-              <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl font-bold text-white">
-                  Premium Plan
-                </CardTitle>
-                <div className="mt-4">
-                  <span className="text-4xl font-bold text-white">
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "1 resume analysis per month",
+                  "Basic keyword matching",
+                  "General improvement tips",
+                  "Email support",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center">
+                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/auth">
+                <Button className="btn-secondary w-full text-lg py-4 h-auto">
+                  Get Started Free
+                </Button>
+              </Link>
+            </div>
+
+            <div className="card-premium p-8 relative border-2 border-blue-500/30 gradient-border">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 text-sm font-bold border-0">
+                  Most Popular
+                </Badge>
+              </div>
+
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  Professional
+                </h3>
+                <div className="mb-4">
+                  <span className="text-5xl font-black text-white">
                     ${isYearly ? "19" : "24"}
                   </span>
-                  <span className="text-gray-400">/month</span>
+                  <span className="text-gray-400 text-lg">/month</span>
                   {isYearly && (
-                    <p className="text-sm text-gray-300 mt-1">Save $60/year</p>
+                    <p className="text-green-400 text-sm mt-2">Save $60/year</p>
                   )}
                 </div>
-                <p className="text-gray-400 mt-2">For serious job seekers</p>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Unlimited resume analyses
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Advanced AI insights</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Industry-specific recommendations
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">ATS optimization tips</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Priority support</span>
-                </div>
-                <div className="flex items-center">
-                  <Check className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">Resume templates</span>
-                </div>
-                <Link to="/auth">
-                  <Button className="w-full mt-6 bg-white text-black hover:bg-gray-200">
-                    Start Premium
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+                <p className="text-gray-400">For serious job seekers</p>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "Unlimited resume analyses",
+                  "Advanced AI insights",
+                  "Industry-specific recommendations",
+                  "ATS optimization tips",
+                  "Priority support",
+                  "Resume templates & examples",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center">
+                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
+                    <span className="text-gray-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/auth">
+                <Button className="btn-accent w-full text-lg py-4 h-auto">
+                  Start Professional
+                  <Zap className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="relative z-40 border-t border-gray-800/50 bg-gray-950/90 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                  <Search className="w-5 h-5 text-black" />
+              <div className="flex items-center space-x-3 mb-6">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <Search className="w-4 h-4 text-white" />
                 </div>
-                <span className="font-bold text-xl">Why Was I Rejected?</span>
+                <span className="font-bold text-xl text-white">
+                  Why Was I Rejected?
+                </span>
               </div>
-              <p className="text-gray-400 max-w-md">
+              <p className="text-gray-400 max-w-md leading-relaxed">
                 AI-powered resume analysis to help you understand rejection and
-                improve your job search success.
+                supercharge your job search success.
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4 text-white">Product</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-bold text-white mb-4">Product</h4>
+              <ul className="space-y-3 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
                     Features
@@ -565,8 +611,8 @@ export default function Index() {
             </div>
 
             <div>
-              <h3 className="font-semibold mb-4 text-white">Company</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h4 className="font-bold text-white mb-4">Company</h4>
+              <ul className="space-y-3 text-gray-400">
                 <li>
                   <a href="#" className="hover:text-white transition-colors">
                     About
@@ -591,7 +637,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+          <div className="border-t border-gray-800/50 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
               © 2024 Why Was I Rejected? All rights reserved.
             </p>
