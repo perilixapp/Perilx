@@ -656,7 +656,7 @@ export default function Index() {
                   <Search className="w-4 h-4 text-black" />
                 </div>
                 <span className="font-semibold text-lg text-gray-50">
-                  Why Was I Rejected?
+                  PerilixAI
                 </span>
               </div>
               <p className="text-gray-400 max-w-md text-sm leading-relaxed">
@@ -748,7 +748,7 @@ export default function Index() {
 
           <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center">
             <p className="text-gray-400 text-xs">
-              © 2024 Why Was I Rejected? All rights reserved.
+              © 2024 PerilixAI. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-3 sm:mt-0">
               <a
