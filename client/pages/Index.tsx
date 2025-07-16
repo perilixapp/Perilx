@@ -87,14 +87,6 @@ export default function Index() {
                   <span className="text-gray-300 text-sm">
                     Welcome, {user.name}!
                   </span>
-                  <a
-                    href="https://discord.gg/your-community"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex"
-                  >
-                    <Button className="btn-ghost">Join Community</Button>
-                  </a>
                   <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
@@ -153,29 +145,12 @@ export default function Index() {
               >
                 Reviews
               </button>
-              {/* Back button - only show when viewing landing sections while logged in */}
-              {user && showLandingSection && (
-                <Button
-                  onClick={backToDashboard}
-                  className="btn-ghost flex items-center gap-2"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Dashboard
-                </Button>
-              )}
+
               {user ? (
                 <div className="flex items-center space-x-3">
                   <span className="text-gray-300 text-sm">
                     Welcome, {user.name}!
                   </span>
-                  <a
-                    href="https://discord.gg/your-community"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex"
-                  >
-                    <Button className="btn-ghost">Join Community</Button>
-                  </a>
                   <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
@@ -194,6 +169,19 @@ export default function Index() {
           </div>
         </div>
       </nav>
+
+      {/* Floating Back to Dashboard Button */}
+      {user && showLandingSection && (
+        <div className="fixed top-20 right-8 z-50">
+          <Button
+            onClick={backToDashboard}
+            className="btn-secondary flex items-center gap-2 shadow-lg"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Dashboard
+          </Button>
+        </div>
+      )}
 
       {/* Show only the requested section if user is logged in and viewing a specific section */}
       {user && showLandingSection === "features" && (
