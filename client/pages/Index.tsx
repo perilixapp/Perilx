@@ -131,10 +131,10 @@ export default function Index() {
                   <Upload className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     1. Upload Your Resume
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Drop your resume file or paste the content directly into our
                     secure platform.
                   </p>
