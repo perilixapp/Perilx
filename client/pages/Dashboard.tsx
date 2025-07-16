@@ -250,30 +250,32 @@ export default function Dashboard() {
                       </div>
                     </div>
                   ) : (
-                    <label
-                      htmlFor="resume-upload"
-                      className="cursor-pointer block"
-                    >
-                      <Upload
-                        className={`w-12 h-12 mx-auto mb-4 transition-colors ${
-                          isDragOver ? "text-violet-400" : "text-gray-400"
-                        }`}
-                      />
-                      <div>
-                        <p
-                          className={`font-medium mb-2 transition-colors ${
-                            isDragOver ? "text-violet-300" : "text-gray-300"
+                    <div className="w-full h-full">
+                      <label
+                        htmlFor="resume-upload"
+                        className="cursor-pointer block w-full h-full min-h-[200px] flex flex-col items-center justify-center"
+                      >
+                        <Upload
+                          className={`w-12 h-12 mx-auto mb-4 transition-colors ${
+                            isDragOver ? "text-violet-400" : "text-gray-400"
                           }`}
-                        >
-                          {isDragOver
-                            ? "Drop your resume here"
-                            : "Drop your resume here or click to browse"}
-                        </p>
-                        <p className="text-gray-400 text-sm">
-                          Supports PDF, DOC, and DOCX files (Max 10MB)
-                        </p>
-                      </div>
-                    </label>
+                        />
+                        <div>
+                          <p
+                            className={`font-medium mb-2 transition-colors ${
+                              isDragOver ? "text-violet-300" : "text-gray-300"
+                            }`}
+                          >
+                            {isDragOver
+                              ? "Drop your resume here"
+                              : "Drop your resume here or click to browse"}
+                          </p>
+                          <p className="text-gray-400 text-sm">
+                            Supports PDF, DOC, and DOCX files (Max 10MB)
+                          </p>
+                        </div>
+                      </label>
+                    </div>
                   )}
                 </div>
               </div>
@@ -319,7 +321,7 @@ Include:
 • Required qualifications
 • Preferred skills
 • Job responsibilities
-• Education requirements
+��� Education requirements
 • Years of experience needed"
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
