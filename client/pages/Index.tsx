@@ -564,9 +564,9 @@ export default function Index() {
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-50 leading-[1.1] mb-6 tracking-tight animate-slide-up">
-                  Understand Why You
+                  Finally Understand Why You
                   <span className="block text-violet-gradient mt-2">
-                    Didn't Get The Job
+                    Got Rejected
                   </span>
                 </h1>
 
@@ -574,24 +574,24 @@ export default function Index() {
                   className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Upload your resume and paste the job description. Get
-                  personalized AI feedback on why you might have been rejected
-                  and actionable tips to improve your chances.
+                  Stop wondering "what went wrong?" Get deep AI analysis of your
+                  rejection with specific insights on what the employer was
+                  really looking for and how to avoid future rejections.
                 </p>
 
                 <div
                   className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up"
                   style={{ animationDelay: "0.2s" }}
                 >
-                  <Link to="/sample-analysis">
+                  <Link to="/auth">
                     <Button className="btn-accent px-6 py-3 text-base font-medium hover-lift">
-                      Try AI Analysis
+                      🔍 Analyze My Rejection
                       <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
                   </Link>
                   <div className="flex items-center text-gray-500 text-sm">
                     <Check className="w-4 h-4 mr-2 text-violet-400" />
-                    Free analysis • No signup required
+                    Deep rejection insights • Upload your actual rejection
                   </div>
                 </div>
               </div>
@@ -604,20 +604,26 @@ export default function Index() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
                 <div className="text-center p-6 card-linear hover-glow">
                   <div className="text-3xl font-bold text-gray-50 mb-1">
-                    98%
+                    94%
                   </div>
-                  <div className="text-gray-400 text-sm">Accuracy Rate</div>
+                  <div className="text-gray-400 text-sm">
+                    Rejection Insights Accuracy
+                  </div>
                 </div>
                 <div className="text-center p-6 card-linear hover-glow">
                   <div className="text-3xl font-bold text-gray-50 mb-1">
-                    10K+
+                    15K+
                   </div>
-                  <div className="text-gray-400 text-sm">Resumes Analyzed</div>
+                  <div className="text-gray-400 text-sm">
+                    Rejections Analyzed
+                  </div>
                 </div>
                 <div className="text-center p-6 card-linear hover-glow">
-                  <div className="text-3xl font-bold text-gray-50 mb-1">3x</div>
+                  <div className="text-3xl font-bold text-gray-50 mb-1">
+                    78%
+                  </div>
                   <div className="text-gray-400 text-sm">
-                    Interview Rate Increase
+                    Avoid Similar Rejections
                   </div>
                 </div>
               </div>
@@ -629,11 +635,11 @@ export default function Index() {
             <div className="linear-container">
               <div className="text-center mb-16">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
-                  How It Works
+                  How Rejection Analysis Works
                 </h2>
                 <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                  Get personalized feedback in minutes with our advanced AI
-                  analysis
+                  Discover exactly why you were rejected and how to avoid it
+                  next time
                 </p>
               </div>
 
@@ -645,11 +651,12 @@ export default function Index() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-50 mb-2">
-                        Upload Your Resume
+                        Upload Your Rejected Resume
                       </h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Securely upload your resume in any format. Our AI
-                        processes it instantly while keeping your data private.
+                        Upload the exact resume you submitted that got rejected.
+                        Our AI analyzes what the employer saw and why it didn't
+                        work.
                       </p>
                     </div>
                   </div>
@@ -660,11 +667,12 @@ export default function Index() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-50 mb-2">
-                        Add Job Description
+                        Add Company & Job Details
                       </h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Paste the job posting you applied for. Our AI compares
-                        requirements with your background.
+                        Enter the company name and paste the exact job posting
+                        you were rejected for. Context is everything for
+                        accurate analysis.
                       </p>
                     </div>
                   </div>
@@ -675,11 +683,12 @@ export default function Index() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-50 mb-2">
-                        Get AI Analysis
+                        Get Rejection Insights
                       </h3>
                       <p className="text-gray-400 leading-relaxed">
-                        Receive detailed insights on gaps, improvements, and
-                        optimization strategies within seconds.
+                        Discover the real reasons you were rejected, what the
+                        employer prioritized, and exactly how to improve for
+                        next time.
                       </p>
                     </div>
                   </div>
