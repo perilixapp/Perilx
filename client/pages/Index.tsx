@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import Dashboard from "./Dashboard";
 import {
   Search,
   Upload,
@@ -21,14 +22,100 @@ import {
   Shield,
   Clock,
   BarChart3,
+  ArrowLeft,
 } from "lucide-react";
 
 export default function Index() {
   const [isYearly, setIsYearly] = useState(false);
+  const [showLandingSection, setShowLandingSection] = useState<string | null>(null);
   const { user, signOut } = useAuth();
 
-  return (
+  const scrollToSection = (sectionId: string) => {
+    if (user) {
+      setShowLandingSection(sectionId);
+    } else {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const backToDashboard = () => {
+    setShowLandingSection(null);
+  };
+
+  // If user is logged in and not viewing a specific section, show dashboard
+  if (user && !showLandingSection) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
+        <div className="absolute inset-0 gradient-bg" />
+
+        {/* Navigation for dashboard */}
+        <nav className="relative z-50 linear-nav sticky top-0">
+          <div className="linear-container">
+            <div className="flex justify-between items-center h-14">
+              <div className="flex items-center space-x-3">
+                <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                  <Search className="w-4 h-4 text-black" />
+                </div>
+                <span className="font-semibold text-lg text-gray-50">
+                  PerilixAI
+                </span>
+              </div>
+              <div className="hidden md:flex items-center space-x-6">
+                <button
+                  onClick={() => scrollToSection('features')}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Features
+                </button>
+                <button
+                  onClick={() => scrollToSection('pricing')}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Pricing
+                </button>
+                <button
+                  onClick={() => scrollToSection('testimonials')}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Reviews
+                </button>
+                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300 text-sm">
+                    Welcome, {user.name}!
+                  </span>
+                  <a
+                    href="https://discord.gg/your-community"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex"
+                  >
+                    <Button className="btn-ghost">
+                      Join Community
+                    </Button>
+                  </a>
+                  <Button onClick={signOut} className="btn-secondary">
+                    Sign Out
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <Dashboard />
+      </div>
+    );
+  }
+
+    return (
     <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
+      {/* Show specific landing section if user is logged in and viewing one */}
+      {user && showLandingSection && (
+        <div className="absolute inset-0 gradient-bg" />
+      )}
+      {/* Normal landing page background */}
+      {(!user || !showLandingSection) && (
+        <div>
       {/* Linear-style background */}
       <div className="absolute inset-0 gradient-bg" />
 
@@ -52,24 +139,34 @@ export default function Index() {
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
-              <a
-                href="#features"
+                            <button
+                onClick={() => scrollToSection('features')}
                 className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Features
-              </a>
-              <a
-                href="#pricing"
+              </button>
+              <button
+                onClick={() => scrollToSection('pricing')}
                 className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Pricing
-              </a>
-              <a
-                href="#testimonials"
+              </button>
+              <button
+                onClick={() => scrollToSection('testimonials')}
                 className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Reviews
-              </a>
+              </button>
+              {/* Back button - only show when viewing landing sections while logged in */}
+              {user && showLandingSection && (
+                <Button
+                  onClick={backToDashboard}
+                  className="btn-ghost flex items-center gap-2"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Dashboard
+                </Button>
+              )}
               {user ? (
                 <div className="flex items-center space-x-3">
                   <span className="text-gray-300 text-sm">
