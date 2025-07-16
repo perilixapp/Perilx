@@ -242,17 +242,37 @@ export default function Dashboard() {
                   </h3>
                 </div>
 
-                <Textarea
-                  placeholder="Paste the job description here..."
-                  value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
-                  className="input-linear min-h-[200px] resize-none"
-                />
+                <div className="space-y-3">
+                  <Textarea
+                    placeholder="Paste the job description here...
 
-                <p className="text-gray-400 text-xs mt-2">
-                  Include requirements, responsibilities, and preferred
-                  qualifications
-                </p>
+Example:
+- Required: 3+ years of React experience
+- Preferred: TypeScript, Node.js, AWS
+- Bachelor's degree in Computer Science
+- Experience with agile development"
+                    value={jobDescription}
+                    onChange={(e) => setJobDescription(e.target.value)}
+                    className="input-linear min-h-[240px] resize-none"
+                  />
+
+                  <div className="flex justify-between items-center text-xs">
+                    <p className="text-gray-400">
+                      Include requirements, responsibilities, and preferred
+                      qualifications
+                    </p>
+                    <p className="text-gray-500">
+                      {jobDescription.length} characters
+                    </p>
+                  </div>
+
+                  {jobDescription.length > 0 && jobDescription.length < 100 && (
+                    <p className="text-yellow-400 text-xs">
+                      ⚠️ Add more details for better analysis (minimum 100
+                      characters recommended)
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
 
