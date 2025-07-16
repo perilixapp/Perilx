@@ -108,25 +108,24 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-gray-950 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 gradient-bg" />
+
       {/* Navigation */}
-      <nav className="border-b border-gray-800 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="relative z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <Search className="w-5 h-5 text-black" />
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                <Search className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-xl text-white">
                 Why Was I Rejected?
               </span>
             </Link>
             <Link to="/">
-              <Button
-                variant="outline"
-                size="sm"
-                className="border-gray-600 text-white hover:bg-white hover:text-black"
-              >
+              <Button className="btn-secondary">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home
               </Button>
@@ -135,35 +134,37 @@ export default function Auth() {
         </div>
       </nav>
 
-      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <Card className="w-full max-w-md border-gray-700 bg-gray-900">
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-white">
-              {isSignUp ? "Create Account" : "Welcome Back"}
-            </CardTitle>
-            <p className="text-gray-400 mt-2">
-              {isSignUp
-                ? "Sign up to start analyzing your resume"
-                : "Sign in to your account"}
-            </p>
-          </CardHeader>
-          <CardContent>
+      <div className="relative z-40 flex items-center justify-center py-16 px-6">
+        <div className="w-full max-w-md">
+          <div className="card-premium p-8">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-black text-white mb-4">
+                {isSignUp ? "Create Account" : "Welcome Back"}
+              </h1>
+              <p className="text-gray-400 text-lg">
+                {isSignUp
+                  ? "Start analyzing your resume with AI"
+                  : "Sign in to your account"}
+              </p>
+            </div>
+
             {error && (
-              <Alert className="mb-4 border-red-600 bg-red-900/20">
+              <Alert className="mb-6 border-red-500/30 bg-red-500/10">
                 <AlertCircle className="h-4 w-4 text-red-400" />
-                <AlertDescription className="text-red-400">
+                <AlertDescription className="text-red-300">
                   {error}
                 </AlertDescription>
               </Alert>
             )}
-            <form onSubmit={handleSubmit} className="space-y-4">
+
+            <form onSubmit={handleSubmit} className="space-y-6">
               {isSignUp && (
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-white">
+                  <Label htmlFor="name" className="text-gray-300 font-medium">
                     Full Name
                   </Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <User className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                     <Input
                       id="name"
                       type="text"
@@ -172,7 +173,7 @@ export default function Auth() {
                       onChange={(e) =>
                         handleInputChange("name", e.target.value)
                       }
-                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
+                      className="pl-10 bg-gray-850/50 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/20 h-12 rounded-xl"
                       required
                     />
                   </div>
@@ -180,29 +181,29 @@ export default function Auth() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white">
+                <Label htmlFor="email" className="text-gray-300 font-medium">
                   Email
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
+                    className="pl-10 bg-gray-850/50 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/20 h-12 rounded-xl"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-white">
+                <Label htmlFor="password" className="text-gray-300 font-medium">
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                  <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
@@ -211,18 +212,18 @@ export default function Auth() {
                     onChange={(e) =>
                       handleInputChange("password", e.target.value)
                     }
-                    className="pl-10 pr-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
+                    className="pl-10 pr-10 bg-gray-850/50 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/20 h-12 rounded-xl"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-400 hover:text-white"
+                    className="absolute right-3 top-3 text-gray-500 hover:text-gray-300 transition-colors"
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4" />
+                      <EyeOff className="h-5 w-5" />
                     ) : (
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-5 w-5" />
                     )}
                   </button>
                 </div>
@@ -230,11 +231,14 @@ export default function Auth() {
 
               {isSignUp && (
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword" className="text-white">
+                  <Label
+                    htmlFor="confirmPassword"
+                    className="text-gray-300 font-medium"
+                  >
                     Confirm Password
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+                    <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-500" />
                     <Input
                       id="confirmPassword"
                       type={showPassword ? "text" : "password"}
@@ -243,7 +247,7 @@ export default function Auth() {
                       onChange={(e) =>
                         handleInputChange("confirmPassword", e.target.value)
                       }
-                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
+                      className="pl-10 bg-gray-850/50 border-gray-700/50 text-white placeholder:text-gray-500 focus:border-purple-500 focus:ring-purple-500/20 h-12 rounded-xl"
                       required
                     />
                   </div>
@@ -252,8 +256,7 @@ export default function Auth() {
 
               <Button
                 type="submit"
-                className="w-full bg-white text-black hover:bg-gray-200"
-                size="lg"
+                className="btn-accent w-full text-lg py-4 h-auto font-semibold"
                 disabled={isLoading}
               >
                 {isLoading
@@ -264,23 +267,20 @@ export default function Auth() {
               </Button>
             </form>
 
-            <div className="mt-6">
+            <div className="mt-8">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <Separator className="w-full bg-gray-600" />
+                  <Separator className="w-full bg-gray-700/50" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="bg-gray-900 px-2 text-gray-400">
+                  <span className="bg-gray-900 px-4 text-gray-400">
                     Or continue with
                   </span>
                 </div>
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button
-                  variant="outline"
-                  className="w-full border-gray-600 text-white hover:bg-white hover:text-black"
-                >
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <Button className="btn-secondary w-full">
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -301,10 +301,7 @@ export default function Auth() {
                   </svg>
                   Google
                 </Button>
-                <Button
-                  variant="outline"
-                  className="w-full border-gray-600 text-white hover:bg-white hover:text-black"
-                >
+                <Button className="btn-secondary w-full">
                   <svg
                     className="w-5 h-5 mr-2"
                     fill="currentColor"
@@ -317,15 +314,15 @@ export default function Auth() {
               </div>
             </div>
 
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-400">
+            <div className="mt-8 text-center">
+              <p className="text-gray-400">
                 {isSignUp
                   ? "Already have an account?"
                   : "Don't have an account?"}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(!isSignUp)}
-                  className="ml-1 font-medium text-white hover:text-gray-300"
+                  className="ml-2 font-semibold text-white hover:text-purple-400 transition-colors"
                 >
                   {isSignUp ? "Sign in" : "Sign up"}
                 </button>
@@ -334,13 +331,13 @@ export default function Auth() {
 
             {!isSignUp && (
               <div className="mt-4 text-center">
-                <button className="text-sm text-white hover:text-gray-300">
+                <button className="text-purple-400 hover:text-purple-300 transition-colors font-medium">
                   Forgot your password?
                 </button>
               </div>
             )}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
