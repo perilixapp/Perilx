@@ -471,39 +471,41 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="relative z-40 py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+      {/* Linear-style Pricing Section */}
+      <section id="pricing" className="relative z-40 linear-section">
+        <div className="linear-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
               Simple, Transparent Pricing
             </h2>
-            <p className="text-xl text-gray-400 mb-8 font-medium">
+            <p className="text-lg text-gray-400 mb-8">
               Choose the plan that accelerates your job search
             </p>
 
-            <div className="flex items-center justify-center space-x-4">
-              <span
-                className={`text-lg font-medium ${!isYearly ? "text-white" : "text-gray-400"}`}
+            <div className="flex items-center justify-center space-x-3 p-1 bg-gray-850 rounded-lg border border-gray-800 w-fit mx-auto">
+              <button
+                onClick={() => setIsYearly(false)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                  !isYearly
+                    ? "bg-gray-700 text-gray-50"
+                    : "text-gray-400 hover:text-gray-300"
+                }`}
               >
                 Monthly
-              </span>
-              <button
-                onClick={() => setIsYearly(!isYearly)}
-                className={`relative w-14 h-7 rounded-full transition-all duration-300 ${isYearly ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-gray-700"}`}
-              >
-                <div
-                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${isYearly ? "translate-x-7" : ""}`}
-                />
               </button>
-              <span
-                className={`text-lg font-medium ${isYearly ? "text-white" : "text-gray-400"}`}
+              <button
+                onClick={() => setIsYearly(true)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                  isYearly
+                    ? "bg-gray-700 text-gray-50"
+                    : "text-gray-400 hover:text-gray-300"
+                }`}
               >
                 Yearly
-                <Badge className="ml-2 bg-green-500/20 text-green-400 border-green-500/30">
-                  Save 20%
-                </Badge>
-              </span>
+                <span className="text-xs px-1.5 py-0.5 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded">
+                  -20%
+                </span>
+              </button>
             </div>
           </div>
 
