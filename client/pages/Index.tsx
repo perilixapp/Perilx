@@ -509,7 +509,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <div className="card-linear p-6 relative">
               <div className="text-center mb-6">
                 <h3 className="text-lg font-semibold text-gray-50 mb-3">
@@ -542,6 +542,47 @@ export default function Index() {
                 <Button className="btn-secondary w-full">
                   Get Started Free
                 </Button>
+              </Link>
+            </div>
+
+            <div className="card-linear p-6 relative">
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Plus
+                </h3>
+                <div className="mb-3">
+                  <span className="text-3xl font-bold text-gray-50">
+                    ${isYearly ? "8" : "10"}
+                  </span>
+                  <span className="text-gray-400 text-sm">/month</span>
+                  {isYearly && (
+                    <p className="text-violet-400 text-xs mt-1">
+                      Save $24/year
+                    </p>
+                  )}
+                </div>
+                <p className="text-gray-400 text-sm">
+                  Perfect for active job seekers
+                </p>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                {[
+                  "5 resume analyses per month",
+                  "Advanced keyword matching",
+                  "Detailed improvement suggestions",
+                  "ATS compatibility score",
+                  "Priority email support",
+                ].map((feature, i) => (
+                  <div key={i} className="flex items-center">
+                    <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/auth">
+                <Button className="btn-accent w-full">Get Plus</Button>
               </Link>
             </div>
 
