@@ -146,10 +146,10 @@ export default function Index() {
                   <FileText className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     2. Add Job Description
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Paste the job posting you applied for so our AI can compare
                     requirements.
                   </p>
@@ -161,10 +161,10 @@ export default function Index() {
                   <Brain className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     3. Get AI Analysis
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-300">
                     Receive detailed feedback on gaps, misalignments, and
                     improvement suggestions.
                   </p>
