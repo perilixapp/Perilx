@@ -84,9 +84,15 @@ export default function Index() {
                 Get Feedback Now
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
-                View Sample Analysis
-              </Button>
+              <Link to="/sample-analysis">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-3 text-lg"
+                >
+                  View Sample Analysis
+                </Button>
+              </Link>
             </div>
             <p className="mt-4 text-sm text-gray-500">
               Free analysis • No credit card required • Results in minutes
