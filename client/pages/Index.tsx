@@ -414,50 +414,56 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
+            <div className="card-linear p-6 hover-glow">
+              <div className="flex items-center mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
+                    className="w-4 h-4 text-yellow-400 fill-current"
                   />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                 "The keyword analysis was a game-changer. I was missing so many
                 important terms that ATS systems were filtering out."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">MC</span>
+                <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-black font-semibold text-sm">MC</span>
                 </div>
                 <div>
-                  <p className="font-bold text-white">Mike Chen</p>
-                  <p className="text-gray-400">Product Marketing Manager</p>
+                  <p className="font-semibold text-gray-50 text-sm">
+                    Mike Chen
+                  </p>
+                  <p className="text-gray-400 text-xs">
+                    Product Marketing Manager
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
+            <div className="card-linear p-6 hover-glow">
+              <div className="flex items-center mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
+                    className="w-4 h-4 text-yellow-400 fill-current"
                   />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                 "Went from 0 interviews to 5 in just three weeks. The
                 personalized advice was spot-on and actionable."
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">AR</span>
+                <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-black font-semibold text-sm">AR</span>
                 </div>
                 <div>
-                  <p className="font-bold text-white">Alex Rodriguez</p>
-                  <p className="text-gray-400">UX Designer</p>
+                  <p className="font-semibold text-gray-50 text-sm">
+                    Alex Rodriguez
+                  </p>
+                  <p className="text-gray-400 text-xs">UX Designer</p>
                 </div>
               </div>
             </div>
