@@ -21,6 +21,8 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,14 +30,81 @@ export default function Auth() {
     confirmPassword: "",
   });
 
+  const { signUp, signIn } = useAuth();
+  const navigate = useNavigate();
+
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    if (error) setError(""); // Clear error when user starts typing
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    if (isSignUp) {
+      if (!formData.name.trim()) {
+        setError("Name is required");
+        return false;
+      }
+      if (formData.password !== formData.confirmPassword) {
+        setError("Passwords do not match");
+        return false;
+      }
+    }
+
+    if (!formData.email.trim()) {
+      setError("Email is required");
+      return false;
+    }
+
+    if (!formData.password) {
+      setError("Password is required");
+      return false;
+    }
+
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters long");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
+    setError("");
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      let result;
+
+      if (isSignUp) {
+        result = await signUp({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        });
+      } else {
+        result = await signIn({
+          email: formData.email,
+          password: formData.password,
+        });
+      }
+
+      if (result.success) {
+        navigate("/"); // Redirect to homepage after successful auth
+      } else {
+        setError(result.message);
+      }
+    } catch (error) {
+      setError("Something went wrong. Please try again.");
+      console.error("Auth error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
