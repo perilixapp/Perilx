@@ -108,11 +108,14 @@ export default function Dashboard() {
         setAnalysisResult({
           matchScore: baseScore,
           missingSkills: [
-            "React Native",
-            "GraphQL",
-            "Docker",
-            "AWS Lambda",
-            "TypeScript",
+            "Senior-level experience (5+ years)",
+            "Leadership/Management experience",
+            "Domain expertise in their industry",
+            "Specific technology stack they use",
+            "Cultural fit indicators",
+            "Advanced degree requirement",
+            "Relevant certifications",
+            "Communication/soft skills demonstration",
           ].slice(0, Math.floor(Math.random() * 3) + 3),
           strengths: [
             "JavaScript",
@@ -127,25 +130,27 @@ export default function Dashboard() {
             "Leadership",
           ].slice(0, Math.floor(Math.random() * 4) + 6),
           improvements: [
-            "Add specific examples of React Native projects",
-            "Include GraphQL experience or mention willingness to learn",
-            "Highlight any containerization experience",
-            "Mention cloud platform familiarity",
-            "Add TypeScript to skills section",
-            "Include metrics for past achievements",
-            "Add more technical keywords",
-            "Improve project descriptions",
-            "Quantify your accomplishments with numbers",
-            "Add relevant certifications",
+            "Tailor your resume specifically to their job requirements",
+            "Add more quantified achievements and metrics",
+            "Include keywords from their exact job posting",
+            "Show progression and growth in your career",
+            "Demonstrate knowledge of their company/industry",
+            "Highlight relevant projects that match their needs",
+            "Show evidence of soft skills and cultural fit",
+            "Include testimonials or recommendations",
+            "Optimize resume format for their ATS system",
+            "Address any obvious gaps or red flags",
+            "Show continuous learning and skill development",
+            "Demonstrate impact in previous roles with numbers",
           ].slice(0, Math.floor(Math.random() * 4) + 6),
           atsOptimization: Math.floor(Math.random() * 15) + 80,
           keywordDensity: Math.floor(Math.random() * 20) + 70,
           overallRating:
             baseScore > 85
-              ? "Excellent Match"
+              ? "Strong Candidate - Likely Other Factors"
               : baseScore > 75
-                ? "Good Match"
-                : "Moderate Match",
+                ? "Qualified But Missing Key Elements"
+                : "Significant Skills/Experience Gap",
           fileName: resumeFile.name,
           jobDescriptionLength: jobDescription.length,
           companyName: companyName.trim(),
