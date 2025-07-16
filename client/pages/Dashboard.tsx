@@ -252,8 +252,8 @@ export default function Dashboard() {
                     </div>
                   ) : (
                     <div className="w-full h-full">
-                      <label
-                        htmlFor="resume-upload"
+                      <div
+                        onClick={handleLabelClick}
                         className="cursor-pointer block w-full h-full min-h-[200px] flex flex-col items-center justify-center"
                       >
                         <Upload
@@ -272,10 +272,10 @@ export default function Dashboard() {
                               : "Drop your resume here or click to browse"}
                           </p>
                           <p className="text-gray-400 text-sm">
-                            Supports PDF, DOC, and DOCX files (Max 10MB)
+                            Supports PDF, DOC, DOCX, and TXT files (Max 10MB)
                           </p>
                         </div>
-                      </label>
+                      </div>
                     </div>
                   )}
                 </div>
