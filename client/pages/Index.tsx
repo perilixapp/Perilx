@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import Dashboard from "./Dashboard";
 import {
   Search,
   Upload,
@@ -21,649 +22,1253 @@ import {
   Shield,
   Clock,
   BarChart3,
+  ArrowLeft,
 } from "lucide-react";
 
 export default function Index() {
   const [isYearly, setIsYearly] = useState(false);
+  const [showLandingSection, setShowLandingSection] = useState<string | null>(
+    null,
+  );
+  const [showDemo, setShowDemo] = useState(false);
   const { user, signOut } = useAuth();
 
+  const scrollToSection = (sectionId: string) => {
+    if (user) {
+      setShowLandingSection(sectionId);
+    } else {
+      document
+        .getElementById(sectionId)
+        ?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const backToDashboard = () => {
+    setShowLandingSection(null);
+  };
+
+  // If user is logged in or in demo mode and not viewing a specific section, show dashboard
+  if ((user || showDemo) && !showLandingSection) {
+    return (
+      <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
+        <div className="absolute inset-0 gradient-bg" />
+
+        {/* Navigation for dashboard */}
+        <nav className="relative z-50 linear-nav sticky top-0">
+          <div className="linear-container">
+            <div className="flex justify-between items-center h-14">
+              <div className="flex items-center space-x-3">
+                <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                  <Search className="w-4 h-4 text-black" />
+                </div>
+                <span className="font-semibold text-lg text-gray-50">
+                  PerilixAI
+                </span>
+              </div>
+              <div className="hidden md:flex items-center space-x-6">
+                <button
+                  onClick={() => scrollToSection("features")}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Features
+                </button>
+                <button
+                  onClick={() => scrollToSection("pricing")}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Pricing
+                </button>
+                <button
+                  onClick={() => scrollToSection("testimonials")}
+                  className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
+                >
+                  Reviews
+                </button>
+                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300 text-sm">
+                    {user ? `Welcome, ${user.name}!` : "Demo Mode"}
+                  </span>
+                  {user ? (
+                    <Button onClick={signOut} className="btn-secondary">
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => setShowDemo(false)}
+                      className="btn-secondary"
+                    >
+                      Exit Demo
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <Dashboard />
+      </div>
+    );
+  }
+
+  // Landing page content (for non-authenticated users or when viewing specific sections)
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
-      {/* Background gradient */}
+    <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
+      {/* Linear-style background */}
       <div className="absolute inset-0 gradient-bg" />
 
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      {/* Subtle floating elements */}
+      <div className="absolute top-32 left-20 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl linear-shimmer" />
+      <div
+        className="absolute bottom-32 right-20 w-80 h-80 bg-blue-500/3 rounded-full blur-3xl linear-shimmer"
+        style={{ animationDelay: "2s" }}
+      />
 
-      {/* Navigation */}
-      <nav className="relative z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl sticky top-0">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      {/* Linear-style Navigation */}
+      <nav className="relative z-50 linear-nav sticky top-0">
+        <div className="linear-container">
+          <div className="flex justify-between items-center h-14">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                <Search className="w-4 h-4 text-white" />
+              <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                <Search className="w-4 h-4 text-black" />
               </div>
-              <span className="font-bold text-xl text-white">
-                Why Was I Rejected?
+              <span className="font-semibold text-lg text-gray-50">
+                PerilixAI
               </span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <a
-                href="#features"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+            <div className="hidden md:flex items-center space-x-6">
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Features
-              </a>
-              <a
-                href="#pricing"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+              </button>
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Pricing
-              </a>
-              <a
-                href="#testimonials"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+              </button>
+              <button
+                onClick={() => scrollToSection("testimonials")}
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Reviews
-              </a>
+              </button>
+
               {user ? (
-                <div className="flex items-center space-x-4">
-                  <span className="text-gray-300">Welcome, {user.name}!</span>
+                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300 text-sm">
+                    Welcome, {user.name}!
+                  </span>
                   <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
                 </div>
               ) : (
-                <>
+                <div className="flex items-center space-x-3">
                   <Link to="/auth">
-                    <Button className="btn-secondary">Sign In</Button>
+                    <Button className="btn-ghost">Sign In</Button>
                   </Link>
                   <Link to="/auth">
                     <Button className="btn-primary">Get Started</Button>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative z-40 pt-24 pb-20 lg:pt-32 lg:pb-28 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-8 px-4 py-2 text-sm bg-gray-900/50 text-gray-300 border border-gray-800/50 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
-              AI-Powered Career Intelligence
-            </Badge>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tight">
-              Understand Why You
-              <span className="block text-accent-gradient">
-                Didn't Get The Job
-              </span>
-            </h1>
-
-            <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
-              Upload your resume and paste the job description. Get personalized
-              AI feedback on why you might have been rejected and actionable
-              tips to improve your chances.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-              <Link to="/sample-analysis">
-                <Button className="btn-accent text-lg px-8 py-4 h-auto">
-                  Try AI Analysis
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
-              <div className="flex items-center text-gray-500 text-sm">
-                <Check className="w-4 h-4 mr-2 text-green-400" />
-                Free analysis • No signup required
-              </div>
-            </div>
-          </div>
+      {/* Floating Back to Dashboard Button */}
+      {user && showLandingSection && (
+        <div className="fixed top-20 right-8 z-50">
+          <Button
+            onClick={backToDashboard}
+            className="btn-secondary flex items-center gap-2 shadow-lg"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Dashboard
+          </Button>
         </div>
-      </section>
+      )}
 
-      {/* Stats Section */}
-      <section className="relative z-40 py-20 animate-slide-up">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">98%</div>
-              <div className="text-gray-400 font-medium">Accuracy Rate</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">10K+</div>
-              <div className="text-gray-400 font-medium">Resumes Analyzed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">3x</div>
-              <div className="text-gray-400 font-medium">
-                Interview Rate Increase
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="relative z-40 py-24 bg-gradient-to-b from-transparent to-gray-900/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              How It Works
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
-              Get personalized feedback in minutes with our advanced AI analysis
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-10">
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <Upload className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Upload Your Resume
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    Securely upload your resume in any format. Our AI processes
-                    it instantly while keeping your data private.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <FileText className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Add Job Description
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    Paste the job posting you applied for. Our AI compares
-                    requirements with your background.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <Brain className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    Get AI Analysis
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    Receive detailed insights on gaps, improvements, and
-                    optimization strategies within seconds.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="card-premium p-8 transform hover:scale-[1.02] transition-all duration-500">
-                <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-bold text-white">
-                      Analysis Results
-                    </h4>
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                      Complete
-                    </Badge>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-300">Match Score</span>
-                      <span className="text-2xl font-bold text-white">84%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[84%]"></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">
-                      Missing Skills
-                    </span>
-                    <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
-                      5 found
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">Strengths</span>
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                      8 identified
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">
-                      Improvements
-                    </span>
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
-                      12 suggested
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="relative z-40 py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              Built for Modern Job Seekers
-            </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
-              Advanced AI technology meets intuitive design to supercharge your
-              job search
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Target className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Precision Analysis
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                AI-powered insights that identify exactly why your application
-                might not stand out to recruiters.
+      {/* Show only the requested section if user is logged in and viewing a specific section */}
+      {user && showLandingSection === "features" && (
+        <section id="features" className="relative z-40 linear-section">
+          <div className="linear-container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                Built for Modern Job Seekers
+              </h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                Advanced AI technology meets intuitive design to supercharge
+                your job search
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Optimization Tips
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Specific, actionable recommendations to optimize your resume for
-                maximum impact.
-              </p>
-            </div>
-
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <MessageSquare className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Personalized Advice
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Tailored suggestions based on your industry, role, and
-                experience level.
-              </p>
-            </div>
-
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Privacy First
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Your data is encrypted and secure. We never share your
-                information with third parties.
-              </p>
-            </div>
-
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Clock className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Instant Results
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Get comprehensive analysis and feedback in under 30 seconds.
-              </p>
-            </div>
-
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <BarChart3 className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">
-                Track Progress
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
-                Monitor your improvements over time with detailed analytics and
-                insights.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section
-        id="testimonials"
-        className="relative z-40 py-24 bg-gradient-to-b from-gray-900/20 to-transparent"
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              Loved by Job Seekers
-            </h2>
-            <p className="text-xl text-gray-400 font-medium">
-              See how our AI analysis helped them land their dream jobs
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
-                  />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                "The AI feedback was incredibly detailed. I finally understood
-                why I wasn't getting callbacks and landed my dream job within a
-                month!"
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">SJ</span>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Target className="w-6 h-6 text-black" />
                 </div>
-                <div>
-                  <p className="font-bold text-white">Sarah Johnson</p>
-                  <p className="text-gray-400">Senior Software Engineer</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
-                  />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                "The keyword analysis was a game-changer. I was missing so many
-                important terms that ATS systems were filtering out."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">MC</span>
-                </div>
-                <div>
-                  <p className="font-bold text-white">Mike Chen</p>
-                  <p className="text-gray-400">Product Marketing Manager</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
-                  />
-                ))}
-              </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-                "Went from 0 interviews to 5 in just three weeks. The
-                personalized advice was spot-on and actionable."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">AR</span>
-                </div>
-                <div>
-                  <p className="font-bold text-white">Alex Rodriguez</p>
-                  <p className="text-gray-400">UX Designer</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" className="relative z-40 py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-xl text-gray-400 mb-8 font-medium">
-              Choose the plan that accelerates your job search
-            </p>
-
-            <div className="flex items-center justify-center space-x-4">
-              <span
-                className={`text-lg font-medium ${!isYearly ? "text-white" : "text-gray-400"}`}
-              >
-                Monthly
-              </span>
-              <button
-                onClick={() => setIsYearly(!isYearly)}
-                className={`relative w-14 h-7 rounded-full transition-all duration-300 ${isYearly ? "bg-gradient-to-r from-blue-500 to-purple-600" : "bg-gray-700"}`}
-              >
-                <div
-                  className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${isYearly ? "translate-x-7" : ""}`}
-                />
-              </button>
-              <span
-                className={`text-lg font-medium ${isYearly ? "text-white" : "text-gray-400"}`}
-              >
-                Yearly
-                <Badge className="ml-2 bg-green-500/20 text-green-400 border-green-500/30">
-                  Save 20%
-                </Badge>
-              </span>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="card-premium p-8 relative">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Starter</h3>
-                <div className="mb-4">
-                  <span className="text-5xl font-black text-white">$0</span>
-                  <span className="text-gray-400 text-lg">/month</span>
-                </div>
-                <p className="text-gray-400">Perfect for getting started</p>
-              </div>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  "1 resume analysis per month",
-                  "Basic keyword matching",
-                  "General improvement tips",
-                  "Email support",
-                ].map((feature, i) => (
-                  <div key={i} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                    <span className="text-gray-300">{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <Link to="/auth">
-                <Button className="btn-secondary w-full text-lg py-4 h-auto">
-                  Get Started Free
-                </Button>
-              </Link>
-            </div>
-
-            <div className="card-premium p-8 relative border-2 border-blue-500/30 gradient-border">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 text-sm font-bold border-0">
-                  Most Popular
-                </Badge>
-              </div>
-
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">
-                  Professional
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Precision Analysis
                 </h3>
-                <div className="mb-4">
-                  <span className="text-5xl font-black text-white">
-                    ${isYearly ? "19" : "24"}
-                  </span>
-                  <span className="text-gray-400 text-lg">/month</span>
-                  {isYearly && (
-                    <p className="text-green-400 text-sm mt-2">Save $60/year</p>
-                  )}
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  AI-powered insights that identify exactly why your application
+                  might not stand out to recruiters.
+                </p>
+              </div>
+
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="w-6 h-6 text-black" />
                 </div>
-                <p className="text-gray-400">For serious job seekers</p>
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Optimization Tips
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Specific, actionable recommendations to optimize your resume
+                  for maximum impact.
+                </p>
               </div>
 
-              <div className="space-y-4 mb-8">
-                {[
-                  "Unlimited resume analyses",
-                  "Advanced AI insights",
-                  "Industry-specific recommendations",
-                  "ATS optimization tips",
-                  "Priority support",
-                  "Resume templates & examples",
-                ].map((feature, i) => (
-                  <div key={i} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                    <span className="text-gray-300">{feature}</span>
-                  </div>
-                ))}
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="w-6 h-6 text-black" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Personalized Advice
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Tailored suggestions based on your industry, role, and
+                  experience level.
+                </p>
               </div>
 
-              <Link to="/auth">
-                <Button className="btn-accent w-full text-lg py-4 h-auto">
-                  Start Professional
-                  <Zap className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Shield className="w-6 h-6 text-black" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Privacy First
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Your data is encrypted and secure. We never share your
+                  information with third parties.
+                </p>
+              </div>
+
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-6 h-6 text-black" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Instant Results
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Get comprehensive analysis and feedback in under 30 seconds.
+                </p>
+              </div>
+
+              <div className="card-interactive p-6 text-center group">
+                <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="w-6 h-6 text-black" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Track Progress
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Monitor your improvements over time with detailed analytics
+                  and insights.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Footer */}
-      <footer className="relative z-40 border-t border-gray-800/50 bg-gray-950/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Search className="w-4 h-4 text-white" />
-                </div>
-                <span className="font-bold text-xl text-white">
-                  Why Was I Rejected?
-                </span>
+      {user && showLandingSection === "pricing" && (
+        <section id="pricing" className="relative z-40 linear-section">
+          <div className="linear-container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                Simple, Transparent Pricing
+              </h2>
+              <p className="text-lg text-gray-400 mb-8">
+                Choose the plan that accelerates your job search
+              </p>
+
+              <div className="flex items-center justify-center space-x-3 p-1 bg-gray-850 rounded-lg border border-gray-800 w-fit mx-auto">
+                <button
+                  onClick={() => setIsYearly(false)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                    !isYearly
+                      ? "bg-gray-700 text-gray-50"
+                      : "text-gray-400 hover:text-gray-300"
+                  }`}
+                >
+                  Monthly
+                </button>
+                <button
+                  onClick={() => setIsYearly(true)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                    isYearly
+                      ? "bg-gray-700 text-gray-50"
+                      : "text-gray-400 hover:text-gray-300"
+                  }`}
+                >
+                  Yearly
+                  <span className="text-xs px-1.5 py-0.5 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded">
+                    -20%
+                  </span>
+                </button>
               </div>
-              <p className="text-gray-400 max-w-md leading-relaxed">
-                AI-powered resume analysis to help you understand rejection and
-                supercharge your job search success.
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <div className="card-linear p-6 relative">
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Starter
+                  </h3>
+                  <div className="mb-3">
+                    <span className="text-3xl font-bold text-gray-50">$0</span>
+                    <span className="text-gray-400 text-sm">/month</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    Perfect for getting started
+                  </p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  {[
+                    "1 resume analysis per month",
+                    "Basic keyword matching",
+                    "General improvement tips",
+                    "Email support",
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center">
+                      <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link to="/auth">
+                  <Button className="btn-secondary w-full">
+                    Get Started Free
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="card-linear p-6 relative">
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Plus
+                  </h3>
+                  <div className="mb-3">
+                    <span className="text-3xl font-bold text-gray-50">
+                      ${isYearly ? "8" : "10"}
+                    </span>
+                    <span className="text-gray-400 text-sm">/month</span>
+                    {isYearly && (
+                      <p className="text-violet-400 text-xs mt-1">
+                        Save $24/year
+                      </p>
+                    )}
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    Perfect for active job seekers
+                  </p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  {[
+                    "5 resume analyses per month",
+                    "Advanced keyword matching",
+                    "Detailed improvement suggestions",
+                    "ATS compatibility score",
+                    "Priority email support",
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center">
+                      <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link to="/auth">
+                  <Button className="btn-accent w-full">Get Plus</Button>
+                </Link>
+              </div>
+
+              <div className="card-linear p-6 relative border-violet-500/20 linear-gradient-border">
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-violet-500 text-black px-3 py-1 text-xs font-semibold rounded-full">
+                    Most Popular
+                  </div>
+                </div>
+
+                <div className="text-center mb-6">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Professional
+                  </h3>
+                  <div className="mb-3">
+                    <span className="text-3xl font-bold text-gray-50">
+                      ${isYearly ? "19" : "24"}
+                    </span>
+                    <span className="text-gray-400 text-sm">/month</span>
+                    {isYearly && (
+                      <p className="text-violet-400 text-xs mt-1">
+                        Save $60/year
+                      </p>
+                    )}
+                  </div>
+                  <p className="text-gray-400 text-sm">
+                    For serious job seekers
+                  </p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  {[
+                    "Unlimited resume analyses",
+                    "Advanced AI insights",
+                    "Industry-specific recommendations",
+                    "ATS optimization tips",
+                    "Priority support",
+                    "Resume templates & examples",
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-center">
+                      <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link to="/auth">
+                  <Button className="btn-accent w-full flex items-center justify-center gap-2">
+                    Start Professional
+                    <Zap className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {user && showLandingSection === "testimonials" && (
+        <section id="testimonials" className="relative z-40 linear-section">
+          <div className="linear-container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                Loved by Job Seekers
+              </h2>
+              <p className="text-lg text-gray-400">
+                See how our AI analysis helped them land their dream jobs
               </p>
             </div>
 
-            <div>
-              <h4 className="font-bold text-white mb-4">Product</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Features
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    How it works
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    API
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="card-linear p-6 hover-glow">
+                <div className="flex items-center mb-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 text-yellow-400 fill-current"
+                    />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                  "The AI feedback was incredibly detailed. I finally understood
+                  why I wasn't getting callbacks and landed my dream job within
+                  a month!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-black font-semibold text-sm">SJ</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-50 text-sm">
+                      Sarah Johnson
+                    </p>
+                    <p className="text-gray-400 text-xs">
+                      Senior Software Engineer
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            <div>
-              <h4 className="font-bold text-white mb-4">Company</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-white transition-colors">
-                    Contact
-                  </a>
-                </li>
-              </ul>
+              <div className="card-linear p-6 hover-glow">
+                <div className="flex items-center mb-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 text-yellow-400 fill-current"
+                    />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                  "The keyword analysis was a game-changer. I was missing so
+                  many important terms that ATS systems were filtering out."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-black font-semibold text-sm">MC</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-50 text-sm">
+                      Mike Chen
+                    </p>
+                    <p className="text-gray-400 text-xs">
+                      Product Marketing Manager
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="card-linear p-6 hover-glow">
+                <div className="flex items-center mb-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-4 h-4 text-yellow-400 fill-current"
+                    />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                  "Went from 0 interviews to 5 in just three weeks. The
+                  personalized advice was spot-on and actionable."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                    <span className="text-black font-semibold text-sm">AR</span>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-50 text-sm">
+                      Alex Rodriguez
+                    </p>
+                    <p className="text-gray-400 text-xs">UX Designer</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
+      )}
 
-          <div className="border-t border-gray-800/50 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © 2024 Why Was I Rejected? All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 sm:mt-0">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
-              >
-                Terms
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
-              >
-                Privacy
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
-              >
-                LinkedIn
-              </a>
+      {/* Show full landing page for non-authenticated users */}
+      {!user && (
+        <>
+          {/* Linear-style Hero Section */}
+          <section className="relative z-40 linear-section animate-fade-in">
+            <div className="linear-container">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-850 border border-gray-800 mb-8 animate-scale-in">
+                  <Sparkles className="w-3 h-3 mr-2 text-violet-400" />
+                  <span className="text-xs font-medium text-gray-300">
+                    AI-Powered Career Intelligence
+                  </span>
+                </div>
+
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-50 leading-[1.1] mb-6 tracking-tight animate-slide-up">
+                  Finally Understand Why You
+                  <span className="block text-violet-gradient mt-2">
+                    Got Rejected
+                  </span>
+                </h1>
+
+                <p
+                  className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
+                  style={{ animationDelay: "0.1s" }}
+                >
+                  Stop wondering "what went wrong?" Get deep AI analysis of your
+                  rejection with specific insights on what the employer was
+                  really looking for and how to avoid future rejections.
+                </p>
+
+                <div
+                  className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up"
+                  style={{ animationDelay: "0.2s" }}
+                >
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link to="/auth">
+                      <Button className="btn-accent px-6 py-3 text-base font-medium hover-lift">
+                        Sign Up / Sign In
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                    <Button
+                      onClick={() => setShowDemo(true)}
+                      className="btn-secondary px-6 py-3 text-base font-medium hover-lift"
+                    >
+                      Try Demo
+                    </Button>
+                  </div>
+                  <div className="flex items-center text-gray-500 text-sm mt-4">
+                    <Check className="w-4 h-4 mr-2 text-violet-400" />
+                    Deep rejection insights • Upload your actual rejection
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </footer>
+          </section>
+
+          {/* Linear-style Stats Section */}
+          <section className="relative z-40 py-16 animate-slide-up">
+            <div className="linear-container">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                <div className="text-center p-6 card-linear hover-glow">
+                  <div className="text-3xl font-bold text-gray-50 mb-1">
+                    94%
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    Rejection Insights Accuracy
+                  </div>
+                </div>
+                <div className="text-center p-6 card-linear hover-glow">
+                  <div className="text-3xl font-bold text-gray-50 mb-1">
+                    15K+
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    Rejections Analyzed
+                  </div>
+                </div>
+                <div className="text-center p-6 card-linear hover-glow">
+                  <div className="text-3xl font-bold text-gray-50 mb-1">
+                    78%
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    Avoid Similar Rejections
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works Section */}
+          <section className="relative z-40 linear-section">
+            <div className="linear-container">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                  How Rejection Analysis Works
+                </h2>
+                <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                  Discover exactly why you were rejected and how to avoid it
+                  next time
+                </p>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-8">
+                  <div className="flex items-start space-x-4 group hover-lift">
+                    <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Upload className="w-5 h-5 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-50 mb-2">
+                        Upload Your Rejected Resume
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        Upload the exact resume you submitted that got rejected.
+                        Our AI analyzes what the employer saw and why it didn't
+                        work.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 group hover-lift">
+                    <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <FileText className="w-5 h-5 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-50 mb-2">
+                        Add Company & Job Details
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        Enter the company name and paste the exact job posting
+                        you were rejected for. Context is everything for
+                        accurate analysis.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4 group hover-lift">
+                    <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Brain className="w-5 h-5 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-50 mb-2">
+                        Get Rejection Insights
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        Discover the real reasons you were rejected, what the
+                        employer prioritized, and exactly how to improve for
+                        next time.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="card-linear p-6 hover-glow hover-lift">
+                    <div className="bg-gray-800 border border-gray-700 rounded-md p-4 mb-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="text-base font-semibold text-gray-50">
+                          Analysis Results
+                        </h4>
+                        <div className="px-2 py-1 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded text-xs">
+                          Complete
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-gray-400 text-sm">
+                            Match Score
+                          </span>
+                          <span className="text-xl font-bold text-gray-50">
+                            84%
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-700 rounded-full h-1.5">
+                          <div className="bg-violet-500 h-1.5 rounded-full w-[84%]"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                        <span className="text-gray-300 text-sm font-medium">
+                          Missing Skills
+                        </span>
+                        <div className="px-2 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded text-xs">
+                          5 found
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                        <span className="text-gray-300 text-sm font-medium">
+                          Strengths
+                        </span>
+                        <div className="px-2 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded text-xs">
+                          8 identified
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                        <span className="text-gray-300 text-sm font-medium">
+                          Improvements
+                        </span>
+                        <div className="px-2 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded text-xs">
+                          12 suggested
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Features, Pricing, Testimonials sections with proper IDs for scrolling */}
+          <section id="features" className="relative z-40 linear-section">
+            <div className="linear-container">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                  Built for Modern Job Seekers
+                </h2>
+                <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                  Advanced AI technology meets intuitive design to supercharge
+                  your job search
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Precision Analysis
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    AI-powered insights that identify exactly why your
+                    application might not stand out to recruiters.
+                  </p>
+                </div>
+
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Optimization Tips
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Specific, actionable recommendations to optimize your resume
+                    for maximum impact.
+                  </p>
+                </div>
+
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <MessageSquare className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Personalized Advice
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Tailored suggestions based on your industry, role, and
+                    experience level.
+                  </p>
+                </div>
+
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Privacy First
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Your data is encrypted and secure. We never share your
+                    information with third parties.
+                  </p>
+                </div>
+
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Instant Results
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Get comprehensive analysis and feedback in under 30 seconds.
+                  </p>
+                </div>
+
+                <div className="card-interactive p-6 text-center group">
+                  <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                    <BarChart3 className="w-6 h-6 text-black" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                    Track Progress
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    Monitor your improvements over time with detailed analytics
+                    and insights.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section id="testimonials" className="relative z-40 linear-section">
+            <div className="linear-container">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                  Loved by Job Seekers
+                </h2>
+                <p className="text-lg text-gray-400">
+                  See how our AI analysis helped them land their dream jobs
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="card-linear p-6 hover-glow">
+                  <div className="flex items-center mb-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                    "The AI feedback was incredibly detailed. I finally
+                    understood why I wasn't getting callbacks and landed my
+                    dream job within a month!"
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-black font-semibold text-sm">
+                        SJ
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-50 text-sm">
+                        Sarah Johnson
+                      </p>
+                      <p className="text-gray-400 text-xs">
+                        Senior Software Engineer
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card-linear p-6 hover-glow">
+                  <div className="flex items-center mb-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                    "The keyword analysis was a game-changer. I was missing so
+                    many important terms that ATS systems were filtering out."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-black font-semibold text-sm">
+                        MC
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-50 text-sm">
+                        Mike Chen
+                      </p>
+                      <p className="text-gray-400 text-xs">
+                        Product Marketing Manager
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="card-linear p-6 hover-glow">
+                  <div className="flex items-center mb-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-4 h-4 text-yellow-400 fill-current"
+                      />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                    "Went from 0 interviews to 5 in just three weeks. The
+                    personalized advice was spot-on and actionable."
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-black font-semibold text-sm">
+                        AR
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-50 text-sm">
+                        Alex Rodriguez
+                      </p>
+                      <p className="text-gray-400 text-xs">UX Designer</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Pricing Section */}
+          <section id="pricing" className="relative z-40 linear-section">
+            <div className="linear-container">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
+                  Simple, Transparent Pricing
+                </h2>
+                <p className="text-lg text-gray-400 mb-8">
+                  Choose the plan that accelerates your job search
+                </p>
+
+                <div className="flex items-center justify-center space-x-3 p-1 bg-gray-850 rounded-lg border border-gray-800 w-fit mx-auto">
+                  <button
+                    onClick={() => setIsYearly(false)}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                      !isYearly
+                        ? "bg-gray-700 text-gray-50"
+                        : "text-gray-400 hover:text-gray-300"
+                    }`}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    onClick={() => setIsYearly(true)}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center gap-2 ${
+                      isYearly
+                        ? "bg-gray-700 text-gray-50"
+                        : "text-gray-400 hover:text-gray-300"
+                    }`}
+                  >
+                    Yearly
+                    <span className="text-xs px-1.5 py-0.5 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded">
+                      -20%
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div className="card-linear p-6 relative">
+                  <div className="text-center mb-6">
+                    <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                      Starter
+                    </h3>
+                    <div className="mb-3">
+                      <span className="text-3xl font-bold text-gray-50">
+                        $0
+                      </span>
+                      <span className="text-gray-400 text-sm">/month</span>
+                    </div>
+                    <p className="text-gray-400 text-sm">
+                      Perfect for getting started
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    {[
+                      "1 resume analysis per month",
+                      "Basic keyword matching",
+                      "General improvement tips",
+                      "Email support",
+                    ].map((feature, i) => (
+                      <div key={i} className="flex items-center">
+                        <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link to="/auth">
+                    <Button className="btn-secondary w-full">
+                      Get Started Free
+                    </Button>
+                  </Link>
+                </div>
+
+                <div className="card-linear p-6 relative">
+                  <div className="text-center mb-6">
+                    <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                      Plus
+                    </h3>
+                    <div className="mb-3">
+                      <span className="text-3xl font-bold text-gray-50">
+                        ${isYearly ? "8" : "10"}
+                      </span>
+                      <span className="text-gray-400 text-sm">/month</span>
+                      {isYearly && (
+                        <p className="text-violet-400 text-xs mt-1">
+                          Save $24/year
+                        </p>
+                      )}
+                    </div>
+                    <p className="text-gray-400 text-sm">
+                      Perfect for active job seekers
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    {[
+                      "5 resume analyses per month",
+                      "Advanced keyword matching",
+                      "Detailed improvement suggestions",
+                      "ATS compatibility score",
+                      "Priority email support",
+                    ].map((feature, i) => (
+                      <div key={i} className="flex items-center">
+                        <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link to="/auth">
+                    <Button className="btn-accent w-full">Get Plus</Button>
+                  </Link>
+                </div>
+
+                <div className="card-linear p-6 relative border-violet-500/20 linear-gradient-border">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <div className="bg-violet-500 text-black px-3 py-1 text-xs font-semibold rounded-full">
+                      Most Popular
+                    </div>
+                  </div>
+
+                  <div className="text-center mb-6">
+                    <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                      Professional
+                    </h3>
+                    <div className="mb-3">
+                      <span className="text-3xl font-bold text-gray-50">
+                        ${isYearly ? "19" : "24"}
+                      </span>
+                      <span className="text-gray-400 text-sm">/month</span>
+                      {isYearly && (
+                        <p className="text-violet-400 text-xs mt-1">
+                          Save $60/year
+                        </p>
+                      )}
+                    </div>
+                    <p className="text-gray-400 text-sm">
+                      For serious job seekers
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    {[
+                      "Unlimited resume analyses",
+                      "Advanced AI insights",
+                      "Industry-specific recommendations",
+                      "ATS optimization tips",
+                      "Priority support",
+                      "Resume templates & examples",
+                    ].map((feature, i) => (
+                      <div key={i} className="flex items-center">
+                        <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                        <span className="text-gray-300 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link to="/auth">
+                    <Button className="btn-accent w-full flex items-center justify-center gap-2">
+                      Start Professional
+                      <Zap className="w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="relative z-40 border-t border-gray-800 bg-gray-950">
+            <div className="linear-container py-12">
+              <div className="grid md:grid-cols-4 gap-8">
+                <div className="md:col-span-2">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                      <Search className="w-4 h-4 text-black" />
+                    </div>
+                    <span className="font-semibold text-lg text-gray-50">
+                      PerilixAI
+                    </span>
+                  </div>
+                  <p className="text-gray-400 max-w-md text-sm leading-relaxed">
+                    AI-powered resume analysis to help you understand rejection
+                    and supercharge your job search success.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-50 mb-3 text-sm">
+                    Product
+                  </h4>
+                  <ul className="space-y-2 text-gray-400">
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        Features
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        Pricing
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        How it works
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        API
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-50 mb-3 text-sm">
+                    Company
+                  </h4>
+                  <ul className="space-y-2 text-gray-400">
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        Blog
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        Careers
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="hover:text-gray-200 transition-colors text-sm"
+                      >
+                        Contact
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center">
+                <p className="text-gray-400 text-xs">
+                  © 2024 PerilixAI. All rights reserved.
+                </p>
+                <div className="flex space-x-4 mt-3 sm:mt-0">
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
+                  >
+                    Terms
+                  </a>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
+                  >
+                    Privacy
+                  </a>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
+                  >
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </>
+      )}
     </div>
   );
 }
