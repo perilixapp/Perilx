@@ -55,14 +55,25 @@ export default function Index() {
               >
                 Reviews
               </a>
-              <Link to="/auth">
-                <Button variant="outline" size="sm">
-                  Sign In
-                </Button>
-              </Link>
-              <Link to="/auth">
-                <Button size="sm">Get Started</Button>
-              </Link>
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-gray-700">Welcome, {user.name}!</span>
+                  <Button onClick={signOut} variant="outline" size="sm">
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Link to="/auth">
+                    <Button variant="outline" size="sm">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/auth">
+                    <Button size="sm">Get Started</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
