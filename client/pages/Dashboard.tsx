@@ -78,6 +78,16 @@ export default function Dashboard() {
     setResumeFile(null);
   };
 
+  const handleLabelClick = () => {
+    console.log("Label clicked, triggering file input");
+    const fileInput = document.getElementById(
+      "resume-upload",
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
   const handleAnalyze = async () => {
     if (!resumeFile || !jobDescription.trim()) {
       alert(
