@@ -409,7 +409,7 @@ Responsibilities:
                       Get unlimited analyses with detailed feedback for all your
                       job applications.
                     </p>
-                    <Link to="/">
+                    <Link to="/auth">
                       <Button size="lg" className="mr-4">
                         Start Free Trial
                       </Button>
