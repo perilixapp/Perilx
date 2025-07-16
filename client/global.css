@@ -6,63 +6,79 @@
 
 @layer base {
   /**
-   * Premium Dark Theme - High-end SaaS Design System
-   * Inspired by Raycast, Linear, and Vercel
+   * Linear Design System - Authentic Recreation
+   * Precise color matching and interaction patterns
    */
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 258 90% 66%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 250 100% 80%;
+    --primary-foreground: 0 0% 9%;
 
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 95%;
+    --accent: 0 0% 8%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 258 90% 66%;
+    --border: 0 0% 8%;
+    --input: 0 0% 8%;
+    --ring: 250 100% 80%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Linear-inspired color palette */
+    /* Linear's exact color palette */
     --gray-950: 0 0% 3%;
-    --gray-900: 0 0% 6%;
-    --gray-850: 0 0% 9%;
-    --gray-800: 0 0% 12%;
-    --gray-700: 0 0% 20%;
-    --gray-600: 0 0% 35%;
-    --gray-500: 0 0% 50%;
+    --gray-900: 0 0% 5%;
+    --gray-850: 0 0% 7%;
+    --gray-800: 0 0% 8%;
+    --gray-750: 0 0% 10%;
+    --gray-700: 0 0% 13%;
+    --gray-600: 0 0% 25%;
+    --gray-500: 0 0% 45%;
     --gray-400: 0 0% 65%;
     --gray-300: 0 0% 80%;
     --gray-200: 0 0% 90%;
     --gray-100: 0 0% 95%;
     --gray-50: 0 0% 98%;
 
-    /* Linear purple accent */
-    --purple-500: 258 90% 66%;
-    --purple-600: 258 90% 58%;
-    --purple-400: 258 90% 74%;
+    /* Linear's signature purple/violet */
+    --violet-500: 250 100% 80%;
+    --violet-600: 250 100% 75%;
+    --violet-400: 250 100% 85%;
+    --violet-300: 250 100% 90%;
 
-    /* Muted blue accent */
-    --blue-500: 258 90% 66%;
-    --blue-600: 258 90% 58%;
-    --blue-400: 258 90% 74%;
+    /* Linear's accent colors */
+    --blue-500: 213 100% 70%;
+    --blue-600: 213 100% 65%;
+    --blue-400: 213 100% 75%;
+
+    --purple-500: 250 100% 80%;
+    --purple-600: 250 100% 75%;
+    --purple-400: 250 100% 85%;
+
+    /* Linear sidebar specific colors */
+    --sidebar-background: 0 0% 3.9%;
+    --sidebar-foreground: 0 0% 65%;
+    --sidebar-primary: 250 100% 80%;
+    --sidebar-primary-foreground: 0 0% 9%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 8%;
+    --sidebar-ring: 250 100% 80%;
   }
 
   * {
@@ -109,25 +125,29 @@
     background: hsl(var(--gray-600));
   }
 
-  /* Premium glow effects */
+  /* Linear-style glow effects */
+  .glow-violet {
+    box-shadow: 0 0 20px hsl(var(--violet-500) / 0.15);
+  }
+
   .glow-blue {
-    box-shadow: 0 0 20px hsl(var(--blue-500) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--blue-500) / 0.15);
   }
 
-  .glow-purple {
-    box-shadow: 0 0 20px hsl(var(--purple-500) / 0.3);
-  }
-
-  /* Subtle animations */
+  /* Linear-inspired animations */
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: linearFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .animate-slide-up {
-    animation: slideUp 0.6s ease-out;
+    animation: linearSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  @keyframes fadeIn {
+  .animate-scale-in {
+    animation: linearScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes linearFadeIn {
     from {
       opacity: 0;
     }
@@ -136,10 +156,10 @@
     }
   }
 
-  @keyframes slideUp {
+  @keyframes linearSlideUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -147,36 +167,47 @@
     }
   }
 
-  /* Premium gradients */
+  @keyframes linearScaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Linear-style gradients */
   .gradient-bg {
     background:
       radial-gradient(
-        ellipse 80% 80% at 50% -20%,
-        hsl(var(--blue-500) / 0.1),
-        transparent
+        ellipse 100% 100% at 50% 0%,
+        hsl(var(--violet-500) / 0.08),
+        transparent 60%
       ),
       radial-gradient(
-        ellipse 80% 80% at 80% 80%,
-        hsl(var(--purple-500) / 0.05),
-        transparent
+        ellipse 60% 60% at 100% 0%,
+        hsl(var(--blue-500) / 0.04),
+        transparent 60%
       );
   }
 
-  .gradient-border {
+  .linear-gradient-border {
     position: relative;
     background-clip: padding-box;
     border: 1px solid transparent;
   }
 
-  .gradient-border::before {
+  .linear-gradient-border::before {
     content: "";
     position: absolute;
     inset: 0;
     padding: 1px;
     background: linear-gradient(
       135deg,
-      hsl(var(--blue-500) / 0.3),
-      hsl(var(--purple-500) / 0.3)
+      hsl(var(--violet-500) / 0.2),
+      hsl(var(--blue-500) / 0.1)
     );
     border-radius: inherit;
     mask:
@@ -184,6 +215,26 @@
       linear-gradient(#fff 0 0);
     mask-composite: xor;
     -webkit-mask-composite: xor;
+  }
+
+  .linear-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--violet-500) / 0.04),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 
   /* Text selection */
