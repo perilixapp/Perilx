@@ -214,9 +214,10 @@ export default function Dashboard() {
                   <input
                     type="file"
                     id="resume-upload"
-                    accept=".pdf,.doc,.docx"
+                    accept=".pdf,.doc,.docx,.txt"
                     onChange={handleFileUpload}
                     className="hidden"
+                    style={{ display: "none" }}
                   />
 
                   {resumeFile ? (
@@ -294,6 +295,8 @@ export default function Dashboard() {
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     className="input-linear"
+                    disabled={false}
+                    readOnly={false}
                   />
 
                   <div className="text-xs">
@@ -321,11 +324,13 @@ Include:
 • Required qualifications
 • Preferred skills
 • Job responsibilities
-��� Education requirements
+• Education requirements
 • Years of experience needed"
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
                     className="input-linear min-h-[240px] resize-none"
+                    disabled={false}
+                    readOnly={false}
                   />
 
                   <div className="flex justify-between items-center text-xs">
