@@ -48,7 +48,7 @@ export default function Index() {
                 <Search className="w-4 h-4 text-black" />
               </div>
               <span className="font-semibold text-lg text-gray-50">
-                Why Was I Rejected?
+                PerilixAI
               </span>
             </div>
             <div className="hidden md:flex items-center space-x-6">
@@ -75,6 +75,14 @@ export default function Index() {
                   <span className="text-gray-300 text-sm">
                     Welcome, {user.name}!
                   </span>
+                  <a
+                    href="https://discord.gg/your-community"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex"
+                  >
+                    <Button className="btn-ghost">Join Community</Button>
+                  </a>
                   <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
