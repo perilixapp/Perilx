@@ -236,8 +236,17 @@ export default function Auth() {
                 </div>
               )}
 
-              <Button type="submit" className="w-full" size="lg">
-                {isSignUp ? "Create Account" : "Sign In"}
+              <Button
+                type="submit"
+                className="w-full"
+                size="lg"
+                disabled={isLoading}
+              >
+                {isLoading
+                  ? "Please wait..."
+                  : isSignUp
+                    ? "Create Account"
+                    : "Sign In"}
               </Button>
             </form>
 
