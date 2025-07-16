@@ -108,21 +108,25 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black">
       {/* Navigation */}
-      <nav className="border-b border-gray-100 bg-white/95 backdrop-blur-sm">
+      <nav className="border-b border-gray-800 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Search className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <Search className="w-5 h-5 text-black" />
               </div>
-              <span className="font-bold text-xl text-gray-900">
+              <span className="font-bold text-xl text-white">
                 Why Was I Rejected?
               </span>
             </Link>
             <Link to="/">
-              <Button variant="outline" size="sm">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-gray-600 text-white hover:bg-white hover:text-black"
+              >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Home
               </Button>
@@ -132,12 +136,12 @@ export default function Auth() {
       </nav>
 
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <Card className="w-full max-w-md">
+        <Card className="w-full max-w-md border-gray-700 bg-gray-900">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">
+            <CardTitle className="text-2xl font-bold text-white">
               {isSignUp ? "Create Account" : "Welcome Back"}
             </CardTitle>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-400 mt-2">
               {isSignUp
                 ? "Sign up to start analyzing your resume"
                 : "Sign in to your account"}
@@ -145,15 +149,19 @@ export default function Auth() {
           </CardHeader>
           <CardContent>
             {error && (
-              <Alert variant="destructive" className="mb-4">
-                <AlertCircle className="h-4 w-4" />
-                <AlertDescription>{error}</AlertDescription>
+              <Alert className="mb-4 border-red-600 bg-red-900/20">
+                <AlertCircle className="h-4 w-4 text-red-400" />
+                <AlertDescription className="text-red-400">
+                  {error}
+                </AlertDescription>
               </Alert>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
               {isSignUp && (
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name" className="text-white">
+                    Full Name
+                  </Label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
@@ -164,7 +172,7 @@ export default function Auth() {
                       onChange={(e) =>
                         handleInputChange("name", e.target.value)
                       }
-                      className="pl-10"
+                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
                       required
                     />
                   </div>
@@ -172,7 +180,9 @@ export default function Auth() {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-white">
+                  Email
+                </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
@@ -181,14 +191,16 @@ export default function Auth() {
                     placeholder="Enter your email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="pl-10"
+                    className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">
+                  Password
+                </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
@@ -199,13 +211,13 @@ export default function Auth() {
                     onChange={(e) =>
                       handleInputChange("password", e.target.value)
                     }
-                    className="pl-10 pr-10"
+                    className="pl-10 pr-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
                     required
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-3 text-gray-400 hover:text-white"
                   >
                     {showPassword ? (
                       <EyeOff className="h-4 w-4" />
@@ -218,7 +230,9 @@ export default function Auth() {
 
               {isSignUp && (
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword">Confirm Password</Label>
+                  <Label htmlFor="confirmPassword" className="text-white">
+                    Confirm Password
+                  </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
@@ -229,7 +243,7 @@ export default function Auth() {
                       onChange={(e) =>
                         handleInputChange("confirmPassword", e.target.value)
                       }
-                      className="pl-10"
+                      className="pl-10 bg-gray-800 border-gray-600 text-white placeholder:text-gray-400 focus:border-white"
                       required
                     />
                   </div>
@@ -238,7 +252,7 @@ export default function Auth() {
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full bg-white text-black hover:bg-gray-200"
                 size="lg"
                 disabled={isLoading}
               >
@@ -253,17 +267,20 @@ export default function Auth() {
             <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <Separator className="w-full" />
+                  <Separator className="w-full bg-gray-600" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="bg-white px-2 text-gray-500">
+                  <span className="bg-gray-900 px-2 text-gray-400">
                     Or continue with
                   </span>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full border-gray-600 text-white hover:bg-white hover:text-black"
+                >
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
                     <path
                       fill="currentColor"
@@ -284,7 +301,10 @@ export default function Auth() {
                   </svg>
                   Google
                 </Button>
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full border-gray-600 text-white hover:bg-white hover:text-black"
+                >
                   <svg
                     className="w-5 h-5 mr-2"
                     fill="currentColor"
@@ -298,14 +318,14 @@ export default function Auth() {
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-400">
                 {isSignUp
                   ? "Already have an account?"
                   : "Don't have an account?"}
                 <button
                   type="button"
                   onClick={() => setIsSignUp(!isSignUp)}
-                  className="ml-1 font-medium text-blue-600 hover:text-blue-500"
+                  className="ml-1 font-medium text-white hover:text-gray-300"
                 >
                   {isSignUp ? "Sign in" : "Sign up"}
                 </button>
@@ -314,7 +334,7 @@ export default function Auth() {
 
             {!isSignUp && (
               <div className="mt-4 text-center">
-                <button className="text-sm text-blue-600 hover:text-blue-500">
+                <button className="text-sm text-white hover:text-gray-300">
                   Forgot your password?
                 </button>
               </div>
