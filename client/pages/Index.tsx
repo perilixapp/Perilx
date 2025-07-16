@@ -39,19 +39,19 @@ export default function Index() {
             <div className="hidden md:flex items-center space-x-8">
               <a
                 href="#features"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
               >
                 Features
               </a>
               <a
                 href="#pricing"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
               >
                 Pricing
               </a>
               <a
                 href="#testimonials"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
+                className="text-gray-300 hover:text-white transition-colors"
               >
                 Reviews
               </a>
