@@ -87,11 +87,11 @@ export default function Index() {
               <span className="mr-2">🎯</span>
               AI-Powered Rejection Analysis
             </Badge>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               Understand Why You
-              <span className="text-blue-600 block">Didn't Get The Job</span>
+              <span className="text-blue-400 block">Didn't Get The Job</span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Upload your resume and paste the job description. Get personalized
               AI feedback on why you might have been rejected and actionable
               tips to improve your chances.
