@@ -80,10 +80,12 @@ export default function Index() {
               tips to improve your chances.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="px-8 py-3 text-lg">
-                Get Feedback Now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              <Link to="/sample-analysis">
+                <Button size="lg" className="px-8 py-3 text-lg">
+                  Want to try it?
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
               <Link to="/sample-analysis">
                 <Button
                   variant="outline"
