@@ -79,22 +79,17 @@ export default function Dashboard() {
   };
 
   const handleAnalyze = async () => {
-    if (!resumeFile || !jobDescription.trim() || !companyName.trim()) {
+    if (!resumeFile || !jobDescription.trim()) {
       alert(
-        "Please upload your resume, provide the job description, and enter the company name to analyze your rejection.",
+        "Please upload your resume and provide the job description to analyze.",
       );
       return;
     }
 
     if (jobDescription.trim().length < 50) {
       alert(
-        "Please provide a more detailed job description (at least 50 characters) for accurate rejection analysis.",
+        "Please provide a more detailed job description (at least 50 characters) for accurate analysis.",
       );
-      return;
-    }
-
-    if (companyName.trim().length < 2) {
-      alert("Please provide the company name where you were rejected.");
       return;
     }
 
@@ -176,15 +171,22 @@ export default function Dashboard() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold text-gray-50 mb-4">
-                🔍 Discover Why You Were Rejected
+                AI Resume Analysis
               </h1>
-              <p className="text-gray-400 text-lg mb-3">
-                Get deep AI analysis on what went wrong in your job application
+              <p className="text-gray-400 text-lg mb-6">
+                Get personalized insights on your resume and application
               </p>
-              <div className="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-lg">
-                <span className="text-red-400 text-sm font-medium">
-                  ⚠️ For applications you've already been rejected from
-                </span>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <div className="inline-flex items-center px-4 py-2 bg-violet-500/10 border border-violet-500/20 rounded-lg">
+                  <span className="text-violet-400 text-sm font-medium">
+                    Resume Analysis: Upload resume + job description
+                  </span>
+                </div>
+                <div className="inline-flex items-center px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-lg">
+                  <span className="text-red-400 text-sm font-medium">
+                    Rejection Analysis: Add company name for deeper insights
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -192,9 +194,8 @@ export default function Dashboard() {
               {/* Resume Upload */}
               <div className="card-linear p-6">
                 <div className="flex items-center mb-4">
-                  <Upload className="w-5 h-5 text-red-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    1. Your Rejected Resume
+                    Upload Resume
                   </h3>
                 </div>
 
@@ -277,59 +278,49 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Company Name */}
+              {/* Company Name - Optional */}
               <div className="card-linear p-6">
                 <div className="flex items-center mb-4">
-                  <Target className="w-5 h-5 text-yellow-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    2. Company That Rejected You
+                    Company (Optional)
                   </h3>
                 </div>
 
                 <div className="space-y-3">
                   <Input
-                    placeholder="e.g., Google, Microsoft, Meta, Netflix..."
+                    placeholder="e.g., Google, Microsoft, Meta... (for rejection analysis)"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     className="input-linear"
                   />
 
-                  <div className="flex justify-between items-center text-xs">
+                  <div className="text-xs">
                     <p className="text-gray-400">
-                      Enter the exact company name where you were rejected
+                      Add company name for deeper rejection insights, or leave
+                      blank for general resume analysis
                     </p>
-                    <p className="text-gray-500">{companyName.length}/50</p>
                   </div>
-
-                  {companyName.length > 0 && companyName.length < 2 && (
-                    <p className="text-yellow-400 text-xs">
-                      ⚠️ Please enter the full company name
-                    </p>
-                  )}
                 </div>
               </div>
 
               {/* Job Description */}
               <div className="card-linear p-6">
                 <div className="flex items-center mb-4">
-                  <Brain className="w-5 h-5 text-blue-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    3. Job You Were Rejected For
+                    Job Description
                   </h3>
                 </div>
 
                 <div className="space-y-3">
                   <Textarea
-                    placeholder="Paste the exact job posting you were rejected for...
+                    placeholder="Paste the job description here...
 
 Include:
 • Required qualifications
 • Preferred skills
 • Job responsibilities
 • Education requirements
-• Years of experience needed
-
-This helps us identify what they were looking for vs. what you offered."
+• Years of experience needed"
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
                     className="input-linear min-h-[240px] resize-none"
@@ -337,8 +328,8 @@ This helps us identify what they were looking for vs. what you offered."
 
                   <div className="flex justify-between items-center text-xs">
                     <p className="text-gray-400">
-                      Paste the complete job posting to analyze the rejection
-                      accurately
+                      Include requirements and responsibilities for accurate
+                      analysis
                     </p>
                     <p className="text-gray-500">
                       {jobDescription.length} characters
@@ -347,8 +338,8 @@ This helps us identify what they were looking for vs. what you offered."
 
                   {jobDescription.length > 0 && jobDescription.length < 100 && (
                     <p className="text-yellow-400 text-xs">
-                      ⚠️ Add more details for accurate rejection analysis
-                      (minimum 100 characters recommended)
+                      Add more details for better analysis (minimum 100
+                      characters recommended)
                     </p>
                   )}
                 </div>
@@ -361,13 +352,10 @@ This helps us identify what they were looking for vs. what you offered."
                 <Button
                   onClick={handleAnalyze}
                   disabled={
-                    !resumeFile ||
-                    !jobDescription.trim() ||
-                    !companyName.trim() ||
-                    isAnalyzing
+                    !resumeFile || !jobDescription.trim() || isAnalyzing
                   }
                   className={`px-8 py-3 text-lg font-medium transition-all duration-200 ${
-                    !resumeFile || !jobDescription.trim() || !companyName.trim()
+                    !resumeFile || !jobDescription.trim()
                       ? "btn-secondary opacity-50 cursor-not-allowed"
                       : isAnalyzing
                         ? "btn-secondary"
@@ -377,12 +365,12 @@ This helps us identify what they were looking for vs. what you offered."
                   {isAnalyzing ? (
                     <>
                       <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
-                      Analyzing Rejection...
+                      Analyzing...
                     </>
                   ) : (
                     <>
                       <Sparkles className="w-5 h-5 mr-2" />
-                      🔍 Analyze My Rejection
+                      Analyze with AI
                     </>
                   )}
                 </Button>
@@ -399,24 +387,7 @@ This helps us identify what they were looking for vs. what you offered."
                         resumeFile ? "bg-green-400" : "bg-gray-600"
                       }`}
                     />
-                    Rejected resume {resumeFile ? "uploaded" : "required"}
-                  </div>
-                  <div
-                    className={`flex items-center gap-2 ${
-                      companyName.trim().length > 1
-                        ? "text-green-400"
-                        : "text-gray-500"
-                    }`}
-                  >
-                    <div
-                      className={`w-2 h-2 rounded-full ${
-                        companyName.trim().length > 1
-                          ? "bg-green-400"
-                          : "bg-gray-600"
-                      }`}
-                    />
-                    Company name{" "}
-                    {companyName.trim().length > 1 ? "added" : "required"}
+                    Resume {resumeFile ? "uploaded" : "required"}
                   </div>
                   <div
                     className={`flex items-center gap-2 ${
@@ -432,9 +403,15 @@ This helps us identify what they were looking for vs. what you offered."
                           : "bg-gray-600"
                       }`}
                     />
-                    Job posting{" "}
-                    {jobDescription.trim().length > 50 ? "complete" : "needed"}
+                    Job description{" "}
+                    {jobDescription.trim().length > 50 ? "ready" : "needed"}
                   </div>
+                  {companyName.trim() && (
+                    <div className="flex items-center gap-2 text-violet-400">
+                      <div className="w-2 h-2 rounded-full bg-violet-400" />
+                      Company added - rejection analysis mode
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
