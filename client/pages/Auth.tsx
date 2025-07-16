@@ -4,8 +4,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Search, ArrowLeft, Mail, Lock, User, Eye, EyeOff } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Search,
+  ArrowLeft,
+  Mail,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
+  AlertCircle,
+} from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Auth() {
   const [isSignUp, setIsSignUp] = useState(false);
