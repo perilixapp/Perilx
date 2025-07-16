@@ -25,12 +25,57 @@ export default function Dashboard() {
   const [jobDescription, setJobDescription] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<any>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setResumeFile(file);
+      // Validate file type
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (allowedTypes.includes(file.type)) {
+        setResumeFile(file);
+      } else {
+        alert("Please upload a PDF, DOC, or DOCX file.");
+      }
     }
+  };
+
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (allowedTypes.includes(file.type)) {
+        setResumeFile(file);
+      } else {
+        alert("Please upload a PDF, DOC, or DOCX file.");
+      }
+    }
+  };
+
+  const removeFile = () => {
+    setResumeFile(null);
   };
 
   const handleAnalyze = async () => {
@@ -109,7 +154,18 @@ export default function Dashboard() {
                   </h3>
                 </div>
 
-                <div className="border-2 border-dashed border-gray-700 rounded-lg p-8 text-center hover:border-gray-600 transition-colors">
+                <div
+                  className={`border-2 border-dashed rounded-lg p-8 text-center transition-all duration-200 ${
+                    isDragOver
+                      ? "border-violet-500 bg-violet-500/5"
+                      : resumeFile
+                        ? "border-violet-500/50 bg-violet-500/5"
+                        : "border-gray-700 hover:border-gray-600"
+                  }`}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                >
                   <input
                     type="file"
                     id="resume-upload"
@@ -117,31 +173,63 @@ export default function Dashboard() {
                     onChange={handleFileUpload}
                     className="hidden"
                   />
-                  <label
-                    htmlFor="resume-upload"
-                    className="cursor-pointer block"
-                  >
-                    <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                    {resumeFile ? (
+
+                  {resumeFile ? (
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-center">
+                        <FileText className="w-12 h-12 text-violet-400" />
+                      </div>
                       <div>
-                        <p className="text-gray-50 font-medium">
+                        <p className="text-gray-50 font-medium text-lg">
                           {resumeFile.name}
                         </p>
                         <p className="text-gray-400 text-sm mt-1">
-                          Click to change file
+                          {(resumeFile.size / 1024 / 1024).toFixed(2)} MB
                         </p>
                       </div>
-                    ) : (
+                      <div className="flex gap-3 justify-center">
+                        <label
+                          htmlFor="resume-upload"
+                          className="cursor-pointer"
+                        >
+                          <Button className="btn-ghost text-sm">
+                            Change File
+                          </Button>
+                        </label>
+                        <Button
+                          onClick={removeFile}
+                          className="btn-ghost text-sm text-red-400 hover:text-red-300"
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <label
+                      htmlFor="resume-upload"
+                      className="cursor-pointer block"
+                    >
+                      <Upload
+                        className={`w-12 h-12 mx-auto mb-4 transition-colors ${
+                          isDragOver ? "text-violet-400" : "text-gray-400"
+                        }`}
+                      />
                       <div>
-                        <p className="text-gray-300 font-medium mb-2">
-                          Drop your resume here or click to browse
+                        <p
+                          className={`font-medium mb-2 transition-colors ${
+                            isDragOver ? "text-violet-300" : "text-gray-300"
+                          }`}
+                        >
+                          {isDragOver
+                            ? "Drop your resume here"
+                            : "Drop your resume here or click to browse"}
                         </p>
                         <p className="text-gray-400 text-sm">
-                          Supports PDF, DOC, and DOCX files
+                          Supports PDF, DOC, and DOCX files (Max 10MB)
                         </p>
                       </div>
-                    )}
-                  </label>
+                    </label>
+                  )}
                 </div>
               </div>
 
