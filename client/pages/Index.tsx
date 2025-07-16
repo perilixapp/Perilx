@@ -305,65 +305,65 @@ export default function Index() {
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <TrendingUp className="w-8 h-8 text-white" />
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Optimization Tips
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Specific, actionable recommendations to optimize your resume for
                 maximum impact.
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <MessageSquare className="w-8 h-8 text-white" />
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <MessageSquare className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Personalized Advice
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Tailored suggestions based on your industry, role, and
                 experience level.
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Shield className="w-8 h-8 text-white" />
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Shield className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Privacy First
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Your data is encrypted and secure. We never share your
                 information with third parties.
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Clock className="w-8 h-8 text-white" />
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Instant Results
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Get comprehensive analysis and feedback in under 30 seconds.
               </p>
             </div>
 
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <BarChart3 className="w-8 h-8 text-white" />
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <BarChart3 className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Track Progress
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Monitor your improvements over time with detailed analytics and
                 insights.
               </p>
