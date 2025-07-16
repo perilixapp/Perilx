@@ -40,29 +40,29 @@
 
     --radius: 0.75rem;
 
-    /* Premium color palette */
-    --gray-950: 0 0% 4%;
-    --gray-900: 0 0% 7%;
-    --gray-850: 0 0% 10%;
-    --gray-800: 0 0% 15%;
-    --gray-700: 0 0% 25%;
-    --gray-600: 0 0% 40%;
-    --gray-500: 0 0% 60%;
-    --gray-400: 0 0% 75%;
-    --gray-300: 0 0% 85%;
-    --gray-200: 0 0% 92%;
+    /* Linear-inspired color palette */
+    --gray-950: 0 0% 3%;
+    --gray-900: 0 0% 6%;
+    --gray-850: 0 0% 9%;
+    --gray-800: 0 0% 12%;
+    --gray-700: 0 0% 20%;
+    --gray-600: 0 0% 35%;
+    --gray-500: 0 0% 50%;
+    --gray-400: 0 0% 65%;
+    --gray-300: 0 0% 80%;
+    --gray-200: 0 0% 90%;
     --gray-100: 0 0% 95%;
     --gray-50: 0 0% 98%;
 
-    /* Electric blue accent */
-    --blue-500: 221 83% 53%;
-    --blue-600: 221 83% 45%;
-    --blue-400: 221 83% 65%;
+    /* Linear purple accent */
+    --purple-500: 258 90% 66%;
+    --purple-600: 258 90% 58%;
+    --purple-400: 258 90% 74%;
 
-    /* Purple accent */
-    --purple-500: 270 91% 65%;
-    --purple-600: 270 91% 55%;
-    --purple-400: 270 91% 75%;
+    /* Muted blue accent */
+    --blue-500: 258 90% 66%;
+    --blue-600: 258 90% 58%;
+    --blue-400: 258 90% 74%;
   }
 
   * {
