@@ -174,7 +174,7 @@ export default function Index() {
 
             <div className="relative">
               <Card className="shadow-2xl border-0 overflow-hidden bg-gray-800 text-white">
-                <CardHeader className="bg-gradient-to-r from-blue-50 to-blue-100 border-b">
+                <CardHeader className="bg-gradient-to-r from-gray-700 to-gray-600 border-b border-gray-600">
                   <CardTitle className="text-lg">
                     Resume Analysis Dashboard
                   </CardTitle>
