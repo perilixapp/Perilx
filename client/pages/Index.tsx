@@ -509,18 +509,22 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div className="card-premium p-8 relative">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Starter</h3>
-                <div className="mb-4">
-                  <span className="text-5xl font-black text-white">$0</span>
-                  <span className="text-gray-400 text-lg">/month</span>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="card-linear p-6 relative">
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
+                  Starter
+                </h3>
+                <div className="mb-3">
+                  <span className="text-3xl font-bold text-gray-50">$0</span>
+                  <span className="text-gray-400 text-sm">/month</span>
                 </div>
-                <p className="text-gray-400">Perfect for getting started</p>
+                <p className="text-gray-400 text-sm">
+                  Perfect for getting started
+                </p>
               </div>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-6">
                 {[
                   "1 resume analysis per month",
                   "Basic keyword matching",
@@ -528,43 +532,45 @@ export default function Index() {
                   "Email support",
                 ].map((feature, i) => (
                   <div key={i} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                    <span className="text-gray-300">{feature}</span>
+                    <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">{feature}</span>
                   </div>
                 ))}
               </div>
 
               <Link to="/auth">
-                <Button className="btn-secondary w-full text-lg py-4 h-auto">
+                <Button className="btn-secondary w-full">
                   Get Started Free
                 </Button>
               </Link>
             </div>
 
-            <div className="card-premium p-8 relative border-2 border-blue-500/30 gradient-border">
-              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 text-sm font-bold border-0">
+            <div className="card-linear p-6 relative border-violet-500/20 linear-gradient-border">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <div className="bg-violet-500 text-black px-3 py-1 text-xs font-semibold rounded-full">
                   Most Popular
-                </Badge>
+                </div>
               </div>
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-4">
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-semibold text-gray-50 mb-3">
                   Professional
                 </h3>
-                <div className="mb-4">
-                  <span className="text-5xl font-black text-white">
+                <div className="mb-3">
+                  <span className="text-3xl font-bold text-gray-50">
                     ${isYearly ? "19" : "24"}
                   </span>
-                  <span className="text-gray-400 text-lg">/month</span>
+                  <span className="text-gray-400 text-sm">/month</span>
                   {isYearly && (
-                    <p className="text-green-400 text-sm mt-2">Save $60/year</p>
+                    <p className="text-violet-400 text-xs mt-1">
+                      Save $60/year
+                    </p>
                   )}
                 </div>
-                <p className="text-gray-400">For serious job seekers</p>
+                <p className="text-gray-400 text-sm">For serious job seekers</p>
               </div>
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-6">
                 {[
                   "Unlimited resume analyses",
                   "Advanced AI insights",
@@ -574,16 +580,16 @@ export default function Index() {
                   "Resume templates & examples",
                 ].map((feature, i) => (
                   <div key={i} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                    <span className="text-gray-300">{feature}</span>
+                    <Check className="w-4 h-4 text-violet-400 mr-3 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm">{feature}</span>
                   </div>
                 ))}
               </div>
 
               <Link to="/auth">
-                <Button className="btn-accent w-full text-lg py-4 h-auto">
+                <Button className="btn-accent w-full flex items-center justify-center gap-2">
                   Start Professional
-                  <Zap className="ml-2 w-5 h-5" />
+                  <Zap className="w-4 h-4" />
                 </Button>
               </Link>
             </div>
