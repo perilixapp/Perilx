@@ -140,21 +140,21 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="relative z-40 py-20 animate-slide-up">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">98%</div>
-              <div className="text-gray-400 font-medium">Accuracy Rate</div>
+      {/* Linear-style Stats Section */}
+      <section className="relative z-40 py-16 animate-slide-up">
+        <div className="linear-container">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="text-center p-6 card-linear hover-glow">
+              <div className="text-3xl font-bold text-gray-50 mb-1">98%</div>
+              <div className="text-gray-400 text-sm">Accuracy Rate</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">10K+</div>
-              <div className="text-gray-400 font-medium">Resumes Analyzed</div>
+            <div className="text-center p-6 card-linear hover-glow">
+              <div className="text-3xl font-bold text-gray-50 mb-1">10K+</div>
+              <div className="text-gray-400 text-sm">Resumes Analyzed</div>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">3x</div>
-              <div className="text-gray-400 font-medium">
+            <div className="text-center p-6 card-linear hover-glow">
+              <div className="text-3xl font-bold text-gray-50 mb-1">3x</div>
+              <div className="text-gray-400 text-sm">
                 Interview Rate Increase
               </div>
             </div>
@@ -162,59 +162,59 @@ export default function Index() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="relative z-40 py-24 bg-gradient-to-b from-transparent to-gray-900/20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+      {/* Linear-style How It Works Section */}
+      <section className="relative z-40 linear-section">
+        <div className="linear-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
               How It Works
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Get personalized feedback in minutes with our advanced AI analysis
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-10">
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <Upload className="w-6 h-6 text-white" />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="flex items-start space-x-4 group hover-lift">
+                <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Upload className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-2">
                     Upload Your Resume
                   </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     Securely upload your resume in any format. Our AI processes
                     it instantly while keeping your data private.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <FileText className="w-6 h-6 text-white" />
+              <div className="flex items-start space-x-4 group hover-lift">
+                <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <FileText className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-2">
                     Add Job Description
                   </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     Paste the job posting you applied for. Our AI compares
                     requirements with your background.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4 group">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
-                  <Brain className="w-6 h-6 text-white" />
+              <div className="flex items-start space-x-4 group hover-lift">
+                <div className="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <Brain className="w-5 h-5 text-black" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-3">
+                  <h3 className="text-lg font-semibold text-gray-50 mb-2">
                     Get AI Analysis
                   </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
+                  <p className="text-gray-400 leading-relaxed">
                     Receive detailed insights on gaps, improvements, and
                     optimization strategies within seconds.
                   </p>
