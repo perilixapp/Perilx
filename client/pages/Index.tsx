@@ -597,45 +597,59 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative z-40 border-t border-gray-800/50 bg-gray-950/90 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+      {/* Linear-style Footer */}
+      <footer className="relative z-40 border-t border-gray-800 bg-gray-950">
+        <div className="linear-container py-12">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <Search className="w-4 h-4 text-white" />
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                  <Search className="w-4 h-4 text-black" />
                 </div>
-                <span className="font-bold text-xl text-white">
+                <span className="font-semibold text-lg text-gray-50">
                   Why Was I Rejected?
                 </span>
               </div>
-              <p className="text-gray-400 max-w-md leading-relaxed">
+              <p className="text-gray-400 max-w-md text-sm leading-relaxed">
                 AI-powered resume analysis to help you understand rejection and
                 supercharge your job search success.
               </p>
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-4">Product</h4>
-              <ul className="space-y-3 text-gray-400">
+              <h4 className="font-semibold text-gray-50 mb-3 text-sm">
+                Product
+              </h4>
+              <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     Features
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     Pricing
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     How it works
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     API
                   </a>
                 </li>
@@ -643,25 +657,39 @@ export default function Index() {
             </div>
 
             <div>
-              <h4 className="font-bold text-white mb-4">Company</h4>
-              <ul className="space-y-3 text-gray-400">
+              <h4 className="font-semibold text-gray-50 mb-3 text-sm">
+                Company
+              </h4>
+              <ul className="space-y-2 text-gray-400">
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     About
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-white transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-gray-200 transition-colors text-sm"
+                  >
                     Contact
                   </a>
                 </li>
@@ -669,26 +697,26 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="border-t border-gray-800/50 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+          <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center">
+            <p className="text-gray-400 text-xs">
               © 2024 Why Was I Rejected? All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 sm:mt-0">
+            <div className="flex space-x-4 mt-3 sm:mt-0">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
               >
                 Terms
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
               >
                 Privacy
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors text-sm"
+                className="text-gray-400 hover:text-gray-200 transition-colors text-xs"
               >
                 LinkedIn
               </a>
