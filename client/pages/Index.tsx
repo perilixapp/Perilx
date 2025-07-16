@@ -28,98 +28,111 @@ export default function Index() {
   const { user, signOut } = useAuth();
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
-      {/* Background gradient */}
+    <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
+      {/* Linear-style background */}
       <div className="absolute inset-0 gradient-bg" />
 
-      {/* Floating orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+      {/* Subtle floating elements */}
+      <div className="absolute top-32 left-20 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl linear-shimmer" />
+      <div
+        className="absolute bottom-32 right-20 w-80 h-80 bg-blue-500/3 rounded-full blur-3xl linear-shimmer"
+        style={{ animationDelay: "2s" }}
+      />
 
-      {/* Navigation */}
-      <nav className="relative z-50 border-b border-gray-800/50 bg-gray-950/80 backdrop-blur-xl sticky top-0">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      {/* Linear-style Navigation */}
+      <nav className="relative z-50 linear-nav sticky top-0">
+        <div className="linear-container">
+          <div className="flex justify-between items-center h-14">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                <Search className="w-4 h-4 text-white" />
+              <div className="w-7 h-7 bg-violet-500 rounded-md flex items-center justify-center">
+                <Search className="w-4 h-4 text-black" />
               </div>
-              <span className="font-bold text-xl text-white">
+              <span className="font-semibold text-lg text-gray-50">
                 Why Was I Rejected?
               </span>
             </div>
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6">
               <a
                 href="#features"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Features
               </a>
               <a
                 href="#pricing"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Pricing
               </a>
               <a
                 href="#testimonials"
-                className="text-gray-400 hover:text-white transition-colors duration-200 font-medium"
+                className="text-gray-400 hover:text-gray-200 transition-colors duration-200 text-sm font-medium"
               >
                 Reviews
               </a>
               {user ? (
-                <div className="flex items-center space-x-4">
-                  <span className="text-gray-300">Welcome, {user.name}!</span>
+                <div className="flex items-center space-x-3">
+                  <span className="text-gray-300 text-sm">
+                    Welcome, {user.name}!
+                  </span>
                   <Button onClick={signOut} className="btn-secondary">
                     Sign Out
                   </Button>
                 </div>
               ) : (
-                <>
+                <div className="flex items-center space-x-3">
                   <Link to="/auth">
-                    <Button className="btn-secondary">Sign In</Button>
+                    <Button className="btn-ghost">Sign In</Button>
                   </Link>
                   <Link to="/auth">
                     <Button className="btn-primary">Get Started</Button>
                   </Link>
-                </>
+                </div>
               )}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative z-40 pt-24 pb-20 lg:pt-32 lg:pb-28 animate-fade-in">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      {/* Linear-style Hero Section */}
+      <section className="relative z-40 linear-section animate-fade-in">
+        <div className="linear-container">
           <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-8 px-4 py-2 text-sm bg-gray-900/50 text-gray-300 border border-gray-800/50 backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
-              AI-Powered Career Intelligence
-            </Badge>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-850 border border-gray-800 mb-8 animate-scale-in">
+              <Sparkles className="w-3 h-3 mr-2 text-violet-400" />
+              <span className="text-xs font-medium text-gray-300">
+                AI-Powered Career Intelligence
+              </span>
+            </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-8 tracking-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-50 leading-[1.1] mb-6 tracking-tight animate-slide-up">
               Understand Why You
-              <span className="block text-accent-gradient">
+              <span className="block text-violet-gradient mt-2">
                 Didn't Get The Job
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 font-medium">
+            <p
+              className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-up"
+              style={{ animationDelay: "0.1s" }}
+            >
               Upload your resume and paste the job description. Get personalized
               AI feedback on why you might have been rejected and actionable
               tips to improve your chances.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+            <div
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up"
+              style={{ animationDelay: "0.2s" }}
+            >
               <Link to="/sample-analysis">
-                <Button className="btn-accent text-lg px-8 py-4 h-auto">
+                <Button className="btn-accent px-6 py-3 text-base font-medium hover-lift">
                   Try AI Analysis
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
               <div className="flex items-center text-gray-500 text-sm">
-                <Check className="w-4 h-4 mr-2 text-green-400" />
+                <Check className="w-4 h-4 mr-2 text-violet-400" />
                 Free analysis • No signup required
               </div>
             </div>
