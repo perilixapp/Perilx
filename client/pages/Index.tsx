@@ -586,7 +586,7 @@ export default function Index() {
                 >
                   Stop wondering "what went wrong?" Get deep AI analysis of your
                   rejection with specific insights on what the employer was
-                  really looking for and how to avoid future rejections!
+                  really looking for and how to avoid future rejections.
                 </p>
 
                 <div
