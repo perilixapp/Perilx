@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Upload,
   FileText,
@@ -441,14 +440,17 @@ This helps us identify what they were looking for vs. what you offered."
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h1 className="text-3xl font-bold text-gray-50 mb-2">
-                  Analysis Complete
+                  📊 Rejection Analysis Complete
                 </h1>
                 <p className="text-gray-400">
-                  Here's your personalized AI feedback
+                  Here's why you were likely rejected from{" "}
+                  <span className="text-violet-400 font-medium">
+                    {analysisResult.companyName}
+                  </span>
                 </p>
               </div>
               <Button onClick={resetAnalysis} className="btn-secondary">
-                New Analysis
+                🔄 Analyze Another Rejection
               </Button>
             </div>
 
@@ -456,23 +458,35 @@ This helps us identify what they were looking for vs. what you offered."
             <div className="card-linear p-6 mb-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-gray-50">
-                  Overall Match Score
+                  🎯 Rejection Analysis Score
                 </h2>
-                <Badge className="bg-violet-500/10 text-violet-400 border-violet-500/20">
-                  {analysisResult.overallRating}
+                <Badge
+                  className={`border ${
+                    analysisResult.matchScore > 85
+                      ? "bg-red-500/10 text-red-400 border-red-500/20"
+                      : analysisResult.matchScore > 75
+                        ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+                        : "bg-green-500/10 text-green-400 border-green-500/20"
+                  }`}
+                >
+                  {analysisResult.matchScore > 85
+                    ? "Likely Overqualified"
+                    : analysisResult.matchScore > 75
+                      ? "Close Match - Other Factors"
+                      : "Skills Gap Identified"}
                 </Badge>
               </div>
 
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-gray-50 mb-1">
-                    {analysisResult.matchScore}%
+                    {100 - analysisResult.matchScore}%
                   </div>
-                  <p className="text-gray-400 text-sm">Job Match</p>
+                  <p className="text-gray-400 text-sm">Rejection Likelihood</p>
                   <div className="w-full bg-gray-800 rounded-full h-2 mt-2">
                     <div
-                      className="bg-violet-500 h-2 rounded-full transition-all duration-1000"
-                      style={{ width: `${analysisResult.matchScore}%` }}
+                      className="bg-red-500 h-2 rounded-full transition-all duration-1000"
+                      style={{ width: `${100 - analysisResult.matchScore}%` }}
                     />
                   </div>
                 </div>
@@ -512,7 +526,7 @@ This helps us identify what they were looking for vs. what you offered."
                 <div className="flex items-center mb-4">
                   <AlertCircle className="w-5 h-5 text-red-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    Missing Skills
+                    ❌ Why You Were Rejected
                   </h3>
                 </div>
                 <div className="space-y-2">
@@ -524,7 +538,7 @@ This helps us identify what they were looking for vs. what you offered."
                       >
                         <span className="text-gray-300">{skill}</span>
                         <span className="text-red-400 text-xs">
-                          Add to resume
+                          Critical gap
                         </span>
                       </div>
                     ),
@@ -537,7 +551,7 @@ This helps us identify what they were looking for vs. what you offered."
                 <div className="flex items-center mb-4">
                   <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    Strengths
+                    ✅ What You Had Going For You
                   </h3>
                 </div>
                 <div className="space-y-2">
@@ -566,7 +580,7 @@ This helps us identify what they were looking for vs. what you offered."
                 <div className="flex items-center mb-4">
                   <TrendingUp className="w-5 h-5 text-blue-400 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-50">
-                    Improvements
+                    🛠️ How to Avoid Future Rejections
                   </h3>
                 </div>
                 <div className="space-y-2">
@@ -595,9 +609,9 @@ This helps us identify what they were looking for vs. what you offered."
             <div className="flex justify-center gap-4 mt-8">
               <Button className="btn-accent">
                 <Zap className="w-4 h-4 mr-2" />
-                Upgrade for Full Report
+                Get Detailed Rejection Analysis
               </Button>
-              <Button className="btn-secondary">Export Summary</Button>
+              <Button className="btn-secondary">📊 Download Report</Button>
             </div>
           </div>
         )}
