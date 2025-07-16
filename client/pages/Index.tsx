@@ -223,49 +223,53 @@ export default function Index() {
             </div>
 
             <div className="relative">
-              <div className="card-premium p-8 transform hover:scale-[1.02] transition-all duration-500">
-                <div className="bg-gray-800/50 border border-gray-700/50 rounded-xl p-6 mb-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-bold text-white">
+              <div className="card-linear p-6 hover-glow hover-lift">
+                <div className="bg-gray-800 border border-gray-700 rounded-md p-4 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-base font-semibold text-gray-50">
                       Analysis Results
                     </h4>
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                    <div className="px-2 py-1 bg-violet-500/10 text-violet-400 border border-violet-500/20 rounded text-xs">
                       Complete
-                    </Badge>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-300">Match Score</span>
-                      <span className="text-2xl font-bold text-white">84%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full w-[84%]"></div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-sm">Match Score</span>
+                      <span className="text-xl font-bold text-gray-50">
+                        84%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-1.5">
+                      <div className="bg-violet-500 h-1.5 rounded-full w-[84%]"></div>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                    <span className="text-gray-300 text-sm font-medium">
                       Missing Skills
                     </span>
-                    <Badge className="bg-red-500/20 text-red-400 border-red-500/30">
+                    <div className="px-2 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded text-xs">
                       5 found
-                    </Badge>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">Strengths</span>
-                    <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                    <span className="text-gray-300 text-sm font-medium">
+                      Strengths
+                    </span>
+                    <div className="px-2 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded text-xs">
                       8 identified
-                    </Badge>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800/30 rounded-lg border border-gray-700/30">
-                    <span className="text-gray-300 font-medium">
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-md border border-gray-700">
+                    <span className="text-gray-300 text-sm font-medium">
                       Improvements
                     </span>
-                    <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30">
+                    <div className="px-2 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded text-xs">
                       12 suggested
-                    </Badge>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -274,28 +278,28 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="relative z-40 py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+      {/* Linear-style Features Section */}
+      <section id="features" className="relative z-40 linear-section">
+        <div className="linear-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
               Built for Modern Job Seekers
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-medium">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Advanced AI technology meets intuitive design to supercharge your
               job search
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card-premium p-8 text-center group">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Target className="w-8 h-8 text-white" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="card-interactive p-6 text-center group">
+              <div className="w-12 h-12 bg-violet-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Target className="w-6 h-6 text-black" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-lg font-semibold text-gray-50 mb-3">
                 Precision Analysis
               </h3>
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 AI-powered insights that identify exactly why your application
                 might not stand out to recruiters.
               </p>
