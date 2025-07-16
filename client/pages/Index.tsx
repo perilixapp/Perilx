@@ -20,6 +20,7 @@ import {
 
 export default function Index() {
   const [isYearly, setIsYearly] = useState(false);
+  const { user, signOut } = useAuth();
 
   return (
     <div className="min-h-screen bg-white">
