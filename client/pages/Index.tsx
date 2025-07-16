@@ -53,10 +53,14 @@ export default function Index() {
               >
                 Reviews
               </a>
-              <Button variant="outline" size="sm">
-                Sign In
-              </Button>
-              <Button size="sm">Get Started</Button>
+              <Link to="/auth">
+                <Button variant="outline" size="sm">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/auth">
+                <Button size="sm">Get Started</Button>
+              </Link>
             </div>
           </div>
         </div>
