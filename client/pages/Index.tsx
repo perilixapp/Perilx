@@ -372,43 +372,44 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section
-        id="testimonials"
-        className="relative z-40 py-24 bg-gradient-to-b from-gray-900/20 to-transparent"
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl lg:text-5xl font-black text-white mb-6">
+      {/* Linear-style Testimonials Section */}
+      <section id="testimonials" className="relative z-40 linear-section">
+        <div className="linear-container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-50 mb-4">
               Loved by Job Seekers
             </h2>
-            <p className="text-xl text-gray-400 font-medium">
+            <p className="text-lg text-gray-400">
               See how our AI analysis helped them land their dream jobs
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="card-premium p-8">
-              <div className="flex items-center mb-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="card-linear p-6 hover-glow">
+              <div className="flex items-center mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className="w-5 h-5 text-yellow-400 fill-current"
+                    className="w-4 h-4 text-yellow-400 fill-current"
                   />
                 ))}
               </div>
-              <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                 "The AI feedback was incredibly detailed. I finally understood
                 why I wasn't getting callbacks and landed my dream job within a
                 month!"
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-white font-bold">SJ</span>
+                <div className="w-10 h-10 bg-violet-500 rounded-full flex items-center justify-center mr-3">
+                  <span className="text-black font-semibold text-sm">SJ</span>
                 </div>
                 <div>
-                  <p className="font-bold text-white">Sarah Johnson</p>
-                  <p className="text-gray-400">Senior Software Engineer</p>
+                  <p className="font-semibold text-gray-50 text-sm">
+                    Sarah Johnson
+                  </p>
+                  <p className="text-gray-400 text-xs">
+                    Senior Software Engineer
+                  </p>
                 </div>
               </div>
             </div>
