@@ -32,7 +32,7 @@ export default function Index() {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Search className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-gray-900">
+              <span className="font-bold text-xl text-white">
                 Why Was I Rejected?
               </span>
             </div>
