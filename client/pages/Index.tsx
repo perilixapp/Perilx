@@ -104,7 +104,7 @@ export default function Index() {
                 </Button>
               </Link>
             </div>
-            <p className="mt-4 text-sm text-gray-500">
+            <p className="mt-4 text-sm text-gray-400">
               Free analysis • No credit card required • Results in minutes
             </p>
           </div>
