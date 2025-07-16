@@ -30,6 +30,7 @@ export default function Index() {
   const [showLandingSection, setShowLandingSection] = useState<string | null>(
     null,
   );
+  const [showDemo, setShowDemo] = useState(false);
   const { user, signOut } = useAuth();
 
   const scrollToSection = (sectionId: string) => {
@@ -46,8 +47,8 @@ export default function Index() {
     setShowLandingSection(null);
   };
 
-  // If user is logged in and not viewing a specific section, show dashboard
-  if (user && !showLandingSection) {
+  // If user is logged in or in demo mode and not viewing a specific section, show dashboard
+  if ((user || showDemo) && !showLandingSection) {
     return (
       <div className="min-h-screen bg-gray-950 text-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 gradient-bg" />
@@ -85,11 +86,20 @@ export default function Index() {
                 </button>
                 <div className="flex items-center space-x-3">
                   <span className="text-gray-300 text-sm">
-                    Welcome, {user.name}!
+                    {user ? `Welcome, ${user.name}!` : "Demo Mode"}
                   </span>
-                  <Button onClick={signOut} className="btn-secondary">
-                    Sign Out
-                  </Button>
+                  {user ? (
+                    <Button onClick={signOut} className="btn-secondary">
+                      Sign Out
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => setShowDemo(false)}
+                      className="btn-secondary"
+                    >
+                      Exit Demo
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -583,13 +593,21 @@ export default function Index() {
                   className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 animate-slide-up"
                   style={{ animationDelay: "0.2s" }}
                 >
-                  <Link to="/auth">
-                    <Button className="btn-accent px-6 py-3 text-base font-medium hover-lift">
-                      🔍 Analyze My Rejection
-                      <ArrowRight className="ml-2 w-4 h-4" />
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <Link to="/auth">
+                      <Button className="btn-accent px-6 py-3 text-base font-medium hover-lift">
+                        Sign Up / Sign In
+                        <ArrowRight className="ml-2 w-4 h-4" />
+                      </Button>
+                    </Link>
+                    <Button
+                      onClick={() => setShowDemo(true)}
+                      className="btn-secondary px-6 py-3 text-base font-medium hover-lift"
+                    >
+                      Try Demo
                     </Button>
-                  </Link>
-                  <div className="flex items-center text-gray-500 text-sm">
+                  </div>
+                  <div className="flex items-center text-gray-500 text-sm mt-4">
                     <Check className="w-4 h-4 mr-2 text-violet-400" />
                     Deep rejection insights • Upload your actual rejection
                   </div>
