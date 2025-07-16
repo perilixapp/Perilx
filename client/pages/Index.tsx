@@ -430,9 +430,11 @@ export default function Index() {
                   <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
                   <span>Email support</span>
                 </div>
-                <Button className="w-full mt-6" variant="outline">
-                  Get Started Free
-                </Button>
+                <Link to="/auth">
+                  <Button className="w-full mt-6" variant="outline">
+                    Get Started Free
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
