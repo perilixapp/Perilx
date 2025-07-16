@@ -10,3 +10,39 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * User data structure
+ */
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+}
+
+/**
+ * Auth request/response types
+ */
+export interface SignUpRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface SignInRequest {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  message: string;
+  user?: User;
+  token?: string;
+}
+
+export interface AuthError {
+  success: false;
+  message: string;
+}
